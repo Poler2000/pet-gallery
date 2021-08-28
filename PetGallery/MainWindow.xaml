@@ -1,0 +1,87 @@
+﻿<Window x:Class="PetGallery.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PetGallery"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="MainWindow" Height="900" Width="1600"
+        MouseDown="MainWindow_OnMouseDown"
+        ResizeMode="CanResizeWithGrip">
+    <Border Background="#222222"
+            CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Top bar -->
+            <Image  Grid.Row="0" Grid.Column="0" Source="Images/PetLogo.png"
+                    Width="160"
+                    Height="40"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            
+
+                
+                <!--<Button Command="{x:Static SystemCommands.MinimizeWindowCommand}" Content="Minimize"/>
+                <Button Command="{x:Static SystemCommands.MaximizeWindowCommand}" Content="Maximize"/>-->
+            <Button Grid.Row="0" Grid.Column="2" Command="{x:Static SystemCommands.CloseWindowCommand}" Content="Close" HorizontalAlignment="Right"/>
+            
+            <!-- Navigation bar -->
+            
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <RadioButton Content="Home"
+                             Height="50"
+                             FontSize="20"
+                             IsChecked="True"
+                             Style="{StaticResource MenuButtonTheme}">
+                    <RadioButton.Tag>
+                        <BitmapImage UriSource="Images/outline_home_white_36dp.png"/>
+                    </RadioButton.Tag>
+                </RadioButton>
+ 
+
+                <RadioButton Content="Explore"
+                             Height="50"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}">
+                    <RadioButton.Tag>
+                        <BitmapImage UriSource="Images/outline_search_white_36dp.png"/>
+                    </RadioButton.Tag>
+                </RadioButton>
+                <RadioButton Content="My collections"
+                             Height="50"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}">
+                    <RadioButton.Tag>
+                        <BitmapImage UriSource="Images/outline_favorite_border_white_36dp.png"/>
+                    </RadioButton.Tag>
+                </RadioButton>
+                <RadioButton Content="Settings"
+                             Height="50"
+                             FontSize="20"
+                             Style="{StaticResource MenuButtonTheme}">
+                    <RadioButton.Tag>
+                        <BitmapImage UriSource="Images/outline_settings_white_36dp.png"/>
+                    </RadioButton.Tag>
+                </RadioButton>
+            </StackPanel>
+            
+            
+            <!-- Current View -->
+            
+        </Grid>
+    </Border>
+</Window>
