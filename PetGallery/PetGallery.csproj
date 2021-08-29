@@ -58,22 +58,22 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Include="Core\ObservableObject.cs" />
+        <Compile Include="Core\RelayCommand.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
         <Page Include="MVVM\Views\LoginView.xaml" />
-        <Page Include="MVVM\Views\RegisterView.xaml" />
+        <Page Include="Themes\InfoButtonTheme.xaml" />
+        <Page Include="Themes\LoginFormButton.xaml" />
         <Page Include="Themes\MenuButtonTheme.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\ViewModels\LoginViewModel.cs" />
-        <Compile Include="MVVM\ViewModels\RegisterViewModel.cs" />
+        <Compile Include="MVVM\ViewModels\MainViewModel.cs" />
         <Compile Include="MVVM\Views\LoginView.xaml.cs">
           <DependentUpon>LoginView.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="MVVM\Views\RegisterView.xaml.cs">
-          <DependentUpon>RegisterView.xaml</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>
@@ -92,11 +92,13 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Core" />
-      <Folder Include="Fonts" />
       <Folder Include="MVVM\Models" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Fonts\Molengo\Molengo-Regular.ttf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Fonts\Molengo\OFL.txt" />
       <Content Include="Images\outline_account_circle_white_36dp.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
@@ -145,6 +147,7 @@
       <Content Include="Images\outline_settings_white_36dp.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <Content Include="Images\outline_vpn_key_white_36dp.png" />
       <Content Include="Images\PetLogo.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>

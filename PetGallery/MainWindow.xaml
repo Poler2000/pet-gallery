@@ -4,13 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetGallery"
+        xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         Title="MainWindow" Height="900" Width="1600"
         MouseDown="MainWindow_OnMouseDown"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        FontFamily="Fonts/Molengo/#Molengo">
+    <Window.DataContext>
+        <viewModels:MainViewModel></viewModels:MainViewModel>
+    </Window.DataContext>
     <Border Background="#222222"
             CornerRadius="20">
         <Grid>
@@ -32,10 +37,8 @@
                     RenderOptions.BitmapScalingMode="HighQuality"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
-            
-
                 
-                <!--<Button Command="{x:Static SystemCommands.MinimizeWindowCommand}" Content="Minimize"/>
+            <!--<Button Command="{x:Static SystemCommands.MinimizeWindowCommand}" Content="Minimize"/>
                 <Button Command="{x:Static SystemCommands.MaximizeWindowCommand}" Content="Maximize"/>-->
             <Button Grid.Row="0" Grid.Column="2" Command="{x:Static SystemCommands.CloseWindowCommand}" Content="Close" HorizontalAlignment="Right"/>
             
@@ -81,7 +84,10 @@
             
             
             <!-- Current View -->
-            
+            <ContentControl Grid.Row="1" Grid.Column="1"
+                            Content="{Binding CurrentView}"
+                            Grid.ColumnSpan="2">
+            </ContentControl>
         </Grid>
     </Border>
 </Window>

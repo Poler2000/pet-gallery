@@ -2,12 +2,20 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PetGallery"
+             xmlns:viewModel="clr-namespace:PetGallery.MVVM.ViewModels"
+             xmlns:views="clr-namespace:PetGallery.MVVM.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          <ResourceDictionary>
              <ResourceDictionary.MergedDictionaries>
                  <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
+                 <ResourceDictionary Source="Themes/LoginFormButton.xaml"/>
+                 <ResourceDictionary Source="Themes/InfoButtonTheme.xaml"/>
              </ResourceDictionary.MergedDictionaries>
+             
+             <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                 <views:LoginView/>
+             </DataTemplate>
          </ResourceDictionary>
     </Application.Resources>
 </Application>
