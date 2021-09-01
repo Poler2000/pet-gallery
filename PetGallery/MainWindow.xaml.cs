@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
+using PetGallery.Core;
 
 namespace PetGallery
 {
@@ -18,6 +20,21 @@ namespace PetGallery
             {
                 DragMove();
             }
+        }
+
+        private void ButtonClose_OnClick(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
+        
+        private void ButtonMin_OnClick(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+        
+        private void ButtonMax_OnClick(object sender, RoutedEventArgs e)
+        { 
+            SystemCommands.MaximizeWindow(this);
         }
     }
 }

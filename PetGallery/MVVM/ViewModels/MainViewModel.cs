@@ -1,4 +1,5 @@
-﻿using PetGallery.Core;
+﻿using System.Windows;
+using PetGallery.Core;
 
 namespace PetGallery.MVVM.ViewModels
 {

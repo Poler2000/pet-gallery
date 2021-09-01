@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetGallery"
         xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
+        xmlns:controls="clr-namespace:PetGallery.Controls"
         mc:Ignorable="d"
         WindowStyle="None"
         Background="Transparent"
@@ -37,13 +38,26 @@
                     RenderOptions.BitmapScalingMode="HighQuality"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
-                
-            <!--<Button Command="{x:Static SystemCommands.MinimizeWindowCommand}" Content="Minimize"/>
-                <Button Command="{x:Static SystemCommands.MaximizeWindowCommand}" Content="Maximize"/>-->
-            <Button Grid.Row="0" Grid.Column="2" Command="{x:Static SystemCommands.CloseWindowCommand}" Content="Close" HorizontalAlignment="Right"/>
+            
+            <!-- Min, Max, Close Buttons -->
+            <StackPanel Grid.Row="0" Grid.Column="2" 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <controls:ImageButton Image="../../Images/outline_minimize_white_36dp.png" 
+                                      Margin="5, 0" Width="36" Height="36"
+                                      MouseOverColor="#3B6CCC"
+                                      Click="ButtonMin_OnClick"/>
+                <controls:ImageButton Image="../../Images/outline_home_max_white_36dp.png"
+                                      Margin="5, 0" Width="36" Height="36"
+                                      MouseOverColor="#98CD26"
+                                      Click="ButtonMax_OnClick"/>
+                <controls:ImageButton Image="../../Images/outline_close_white_36dp.png"
+                                      Margin="5, 0" Width="36" Height="36"
+                                      MouseOverColor="#CC2F12"
+                                      Click="ButtonClose_OnClick"/>
+            </StackPanel>
             
             <!-- Navigation bar -->
-            
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <RadioButton Content="Home"
                              Height="50"

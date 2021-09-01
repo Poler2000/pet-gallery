@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PetGallery.MVVM.Views"
              xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
+             xmlns:controls="clr-namespace:PetGallery.Controls"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -20,8 +21,10 @@
         <StackPanel HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Margin="15">
-            <Button Style="{StaticResource InfoButtonTheme}"
-                    Command="{Binding InfoCommand}"/>
+           
+            <controls:ImageButton Image="../../Images/outline_info_white_36dp.png"
+                                  Width="56" Height="56"
+                                  Command="{Binding InfoCommand}"/>
             <TextBlock x:Name="InfoTextBox"
                        Text="Hey, it's just a demo app. All provided data is only stored locally on your computer. "
                        TextWrapping="Wrap"
