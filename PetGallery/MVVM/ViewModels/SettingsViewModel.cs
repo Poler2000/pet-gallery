@@ -1,6 +1,8 @@
-﻿namespace PetGallery.MVVM.ViewModels
+﻿using PetGallery.Core;
+
+namespace PetGallery.MVVM.ViewModels
 {
-    public class SettingsViewModel
+    public class SettingsViewModel : ObservableObject
     {
         
     }

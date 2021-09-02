@@ -4,9 +4,68 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PetGallery.MVVM.Views"
+             xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <viewModels:HomeViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        
+        <ScrollViewer
+                     Background="#333333">
+           <Grid ScrollViewer.CanContentScroll="True">
+               <Grid.RowDefinitions>
+                   <RowDefinition Height="100"/>
+                   <RowDefinition Height="60"/>
+                   <RowDefinition Height="700"/>
+                   <RowDefinition Height="700"/>
+                   <RowDefinition Height="700"/>
+               </Grid.RowDefinitions>
+               
+               <Grid.ColumnDefinitions>
+                   <ColumnDefinition/>
+                   <ColumnDefinition/>
+                   <ColumnDefinition/>
+                   <ColumnDefinition/>
+                   <ColumnDefinition/>
+               </Grid.ColumnDefinitions>
+               
+               <TextBlock Grid.Row="0" Grid.Column="0" 
+                          Grid.ColumnSpan="5"
+                          Text="Hello, Nabuchonodozor!"
+                          FontSize="56"
+                          Margin="50, 20, 0, 20"/>
+               
+               <TextBlock Grid.Row="1" Grid.Column="0"
+                          Grid.ColumnSpan="3"
+                          Margin="50,0,0,0"
+                          Text="Welcome to PetGallery!"
+                          FontSize="36"/>
+               <TextBlock Grid.Row="2" Grid.Column="0" 
+                          Margin="50,0,0,0"
+                          Grid.ColumnSpan="3"
+                          FontSize="20"
+                          TextWrapping="Wrap"
+                          Text="{StaticResource About}"/>
+               
+               <Image Grid.Row="1" Grid.Column="3" 
+                      Grid.RowSpan="2" Grid.ColumnSpan="2"
+                      Source="{Binding PrimaryImage}"
+                      VerticalAlignment="Top"/>
+               <TextBlock Grid.Row="3" Grid.Column="0" 
+                          Margin="50,0,0,0"
+                          Grid.ColumnSpan="3"
+                          FontSize="20"
+                          TextWrapping="Wrap"
+                          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut maximus odio purus, et bibendum orci ornare eu. Donec quis scelerisque dolor. Cras rhoncus sed ex non volutpat. Sed sed aliquam purus, vitae suscipit enim. Maecenas at leo vel lorem scelerisque posuere. Nam eget magna eleifend, gravida nisi ac, semper augue. Suspendisse potenti. Fusce in nunc ut purus interdum bibendum ac non lorem."/>
+               <TextBlock Grid.Row="4" Grid.Column="0" 
+                          Margin="50,0,0,0"
+                          Grid.ColumnSpan="3"
+                          FontSize="20"
+                          TextWrapping="Wrap"
+                          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut maximus odio purus, et bibendum orci ornare eu. Donec quis scelerisque dolor. Cras rhoncus sed ex non volutpat. Sed sed aliquam purus, vitae suscipit enim. Maecenas at leo vel lorem scelerisque posuere. Nam eget magna eleifend, gravida nisi ac, semper augue. Suspendisse potenti. Fusce in nunc ut purus interdum bibendum ac non lorem."/>
+           </Grid>
+       </ScrollViewer>
     </Grid>
+    
 </UserControl>

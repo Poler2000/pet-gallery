@@ -1,7 +1,10 @@
-﻿namespace PetGallery.MVVM.ViewModels
+﻿using PetGallery.Core;
+
+namespace PetGallery.MVVM.ViewModels
 {
-    public class CollectionViewModel
+    public class CollectionViewModel : ObservableObject
+
     {
-        
+
     }
 }

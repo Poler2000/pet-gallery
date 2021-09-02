@@ -1,6 +1,8 @@
-﻿namespace PetGallery.MVVM.ViewModels
+﻿using PetGallery.Core;
+
+namespace PetGallery.MVVM.ViewModels
 {
-    public class ExploreViewModel
+    public class ExploreViewModel : ObservableObject
     {
         
     }

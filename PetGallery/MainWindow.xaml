@@ -13,7 +13,8 @@
         Title="MainWindow" Height="900" Width="1600"
         MouseDown="MainWindow_OnMouseDown"
         ResizeMode="CanResizeWithGrip"
-        FontFamily="Fonts/Molengo/#Molengo">
+        FontFamily="Fonts/Molengo/#Molengo"
+        Foreground="White">
     <Window.DataContext>
         <viewModels:MainViewModel></viewModels:MainViewModel>
     </Window.DataContext>
@@ -63,7 +64,8 @@
                              Height="50"
                              FontSize="20"
                              IsChecked="True"
-                             Style="{StaticResource MenuButtonTheme}">
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding HomeViewCommand}">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="Images/outline_home_white_36dp.png"/>
                     </RadioButton.Tag>
@@ -73,7 +75,8 @@
                 <RadioButton Content="Explore"
                              Height="50"
                              FontSize="20"
-                             Style="{StaticResource MenuButtonTheme}">
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding ExploreViewCommand}">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="Images/outline_search_white_36dp.png"/>
                     </RadioButton.Tag>
@@ -81,7 +84,8 @@
                 <RadioButton Content="My collections"
                              Height="50"
                              FontSize="20"
-                             Style="{StaticResource MenuButtonTheme}">
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding MyCollectionsViewCommand}">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="Images/outline_favorite_border_white_36dp.png"/>
                     </RadioButton.Tag>
@@ -89,7 +93,8 @@
                 <RadioButton Content="Settings"
                              Height="50"
                              FontSize="20"
-                             Style="{StaticResource MenuButtonTheme}">
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding SettingsViewCommand}">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="Images/outline_settings_white_36dp.png"/>
                     </RadioButton.Tag>
@@ -100,7 +105,8 @@
             <!-- Current View -->
             <ContentControl Grid.Row="1" Grid.Column="1"
                             Content="{Binding CurrentView}"
-                            Grid.ColumnSpan="2">
+                            Grid.ColumnSpan="2"
+                            Background="#333333">
             </ContentControl>
         </Grid>
     </Border>

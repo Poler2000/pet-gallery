@@ -12,10 +12,31 @@
                  <ResourceDictionary Source="Themes/LoginFormButton.xaml"/>
                  <ResourceDictionary Source="Themes/InterfaceButtonTheme.xaml"/>
                  <ResourceDictionary Source="Themes/ImageButtonTheme.xaml"/>
+                 <ResourceDictionary Source="./StringResources.xaml"/>
              </ResourceDictionary.MergedDictionaries>
              
              <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
                  <views:LoginView/>
+             </DataTemplate>
+             
+             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                 <views:HomeView/>
+             </DataTemplate>
+             
+             <DataTemplate DataType="{x:Type viewModel:ExploreViewModel}">
+                 <views:ExploreView/>
+             </DataTemplate>
+             
+             <DataTemplate DataType="{x:Type viewModel:MyCollectionsViewModel}">
+                 <views:MyCollectionsView/>
+             </DataTemplate>
+             
+             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                 <views:SettingsView/>
+             </DataTemplate>
+             
+             <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+                 <views:RegisterView/>
              </DataTemplate>
          </ResourceDictionary>
     </Application.Resources>
