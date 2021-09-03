@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using PetGallery.Core;
+using PetGallery.MVVM.Models;
 
 namespace PetGallery.MVVM.ViewModels
 {
@@ -9,6 +12,9 @@ namespace PetGallery.MVVM.ViewModels
         public RelayCommand ExploreViewCommand { get; set; }
         public RelayCommand MyCollectionsViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
+
+        private RelayCommand LoginCommand { get; set; }
+        private RelayCommand RegisterCommand { get; set; }
 
         private ObservableObject _currentView;
         
@@ -24,9 +30,8 @@ namespace PetGallery.MVVM.ViewModels
 
         public MainViewModel()
         {
-            CurrentView = new LoginViewModel();
-
             PrepareCommands();
+            CurrentView = new LoginViewModel(LoginCommand, RegisterCommand);
         }
 
         private void PrepareCommands()
@@ -38,6 +43,33 @@ namespace PetGallery.MVVM.ViewModels
             MyCollectionsViewCommand = new RelayCommand(o => { CurrentView = new MyCollectionsViewModel(); });
 
             SettingsViewCommand = new RelayCommand(o => { CurrentView = new SettingsViewModel(); });
+
+            LoginCommand = new RelayCommand(o =>
+            {
+                if (CurrentView is LoginViewModel)
+                {
+                    if (!(o is UserModel userData))
+                    {
+                        return;
+                    }
+                    
+                    Console.WriteLine(userData.Login);
+                    return;
+                }
+
+                CurrentView = new LoginViewModel(LoginCommand, RegisterCommand);
+            });
+
+            RegisterCommand = new RelayCommand(o =>
+            {
+                if (CurrentView is RegisterViewModel)
+                {
+                    Console.WriteLine("Register");
+                    return;
+                }
+
+                CurrentView = new RegisterViewModel(LoginCommand, RegisterCommand);
+            });
         }
     }
 }

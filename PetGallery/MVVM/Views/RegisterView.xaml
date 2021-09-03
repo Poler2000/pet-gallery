@@ -4,9 +4,130 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PetGallery.MVVM.Views"
+             xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
+             xmlns:controls="clr-namespace:PetGallery.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="900">
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush  StartPoint="0.3,1" EndPoint="0.7,0">
+                <GradientStop Color="#98CD26" Offset="0.0"/>
+                <GradientStop Color="#3B6CCC" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="15">
+           
+            <controls:ImageButton Image="../../Images/outline_info_white_36dp.png"
+                                  Width="56" Height="56"
+                                  Command="{Binding InfoCommand}"/>
+            <TextBlock x:Name="InfoTextBox"
+                       Text="Hey, it's just a demo app. All provided data is only stored locally on your computer. "
+                       TextWrapping="Wrap"
+                       Width="200"
+                       Foreground="White"
+                       TextAlignment="Justify"
+                       FontSize="20"
+                       Visibility="{Binding IsInfoVisible}"/>
+        </StackPanel>
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="1">
+            <Image Source="../../Images/PetLogo.png"
+                   Margin="0,0,0,30"/>
+            <StackPanel  Orientation="Horizontal"
+                         HorizontalAlignment="Center"
+                         Margin="0,30,0,0">
+                <TextBox x:Name="UsernameBox"
+                         Text="Username"
+                         FontSize="20"
+                         HorizontalAlignment="Center"
+                         Foreground="White"
+                         Background="Transparent"
+                         Width="240"
+                         HorizontalContentAlignment="Left"
+                         Height="36"
+                         BorderThickness="0"
+                         Margin="0,0,5,0"/>
+                <Image Source="../../Images/outline_create_white_36dp.png" Width="36"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Border Width="280"
+                    Height="2"
+                    Background="White"
+                    Opacity="0.5"></Border>
+            
+            <StackPanel  Orientation="Horizontal"
+                         HorizontalAlignment="Center"
+                         Margin="0,50,0,0">
+                <TextBox x:Name="EmailBox"
+                         Text="E-mail"
+                         FontSize="20"
+                         HorizontalAlignment="Center"
+                         Foreground="White"
+                         Background="Transparent"
+                         Width="240"
+                         HorizontalContentAlignment="Left"
+                         Height="36"
+                         BorderThickness="0"
+                         Margin="0,0,5,0"/>
+                <Image Source="../../Images/outline_account_circle_white_36dp.png" Width="36"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Border Width="280"
+                    Height="2"
+                    Background="White"
+                    Opacity="0.5"></Border>
+            
+            <StackPanel  Orientation="Horizontal"
+                         HorizontalAlignment="Center"
+                         Margin="0,50,0,0">
+                <PasswordBox x:Name="PasswordBox"
+                             Password="Password"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             Width="240"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="36"
+                             BorderThickness="0"
+                             Margin="0,0,5,0"/>
+                <Image Source="../../Images/outline_vpn_key_white_36dp.png" Width="36"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Border Width="280"
+                    Height="2"
+                    Background="White"
+                    Opacity="0.5"></Border>
+            <Grid Margin="0, 50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Height="40"
+                        Content="Login"
+                        Style="{StaticResource LoginFormButton}"
+                        Command="{Binding LoginCommand}"/>
+                <Button Grid.Column="3" Height="40"
+                        Content="Register"
+                        Style="{StaticResource LoginFormButton}"
+                        Command="{Binding RegisterCommand}"/>
+            </Grid>
+        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

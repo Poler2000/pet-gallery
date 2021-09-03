@@ -5,7 +5,7 @@
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{3A687609-211B-42B2-8A34-7844CEBD88BF}</ProjectGuid>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <RootNamespace>PetGallery</RootNamespace>
         <AssemblyName>PetGallery</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>

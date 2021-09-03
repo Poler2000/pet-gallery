@@ -7,10 +7,8 @@
              xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
              xmlns:controls="clr-namespace:PetGallery.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="600" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewModels:LoginViewModel></viewModels:LoginViewModel>
-    </UserControl.DataContext>
+             d:DesignHeight="600" d:DesignWidth="800" d:DataContext="{d:DesignInstance }">
+    
     <Grid>
         <Grid.Background>
             <LinearGradientBrush>
@@ -47,7 +45,8 @@
             <StackPanel  Orientation="Horizontal"
                          HorizontalAlignment="Center"
                          Margin="0,50,0,0">
-                <TextBox Text="Username"
+                <TextBox x:Name="EmailBox"
+                         Text="{Binding Username, Mode=OneWayToSource}"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="White"
@@ -69,7 +68,8 @@
             <StackPanel  Orientation="Horizontal"
                          HorizontalAlignment="Center"
                          Margin="0,50,0,0">
-                <PasswordBox Password="Password"
+                <PasswordBox x:Name="PasswordBox"
+                             Password="Password"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -98,10 +98,12 @@
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="1" Height="40"
                         Content="Login"
-                        Style="{StaticResource LoginFormButton}"/>
+                        Style="{StaticResource LoginFormButton}"
+                        Command="{Binding LoginCommand}"/>
                 <Button Grid.Column="3" Height="40"
                         Content="Register"
-                        Style="{StaticResource LoginFormButton}"/>
+                        Style="{StaticResource LoginFormButton}"
+                        Command="{Binding RegisterCommand}"/>
             </Grid>
         </StackPanel>
         </Grid>

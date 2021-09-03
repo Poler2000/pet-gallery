@@ -30,6 +30,7 @@ namespace PetGallery.MVVM.ViewModels
 
         public HomeViewModel()
         {
+            Console.WriteLine("UUU");
             Task.Run((LoadRandomImage));
         }
 

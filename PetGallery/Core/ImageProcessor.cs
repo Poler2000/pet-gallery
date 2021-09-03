@@ -43,7 +43,7 @@ namespace PetGallery.Core
         {
             string url = "";
 
-            url = $"https://api.thecatapi.com/v1/images/search";
+            url = $"https://api.thecatapi.com/v1/images/search?breed_ids=beng";
 
             using (HttpResponseMessage response = await  ApiHelper.Client.GetAsync(url))
             {
