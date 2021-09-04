@@ -6,10 +6,8 @@
              xmlns:local="clr-namespace:PetGallery.MVVM.Views"
              xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <viewModels:HomeViewModel/>
-    </UserControl.DataContext>
+             d:DesignHeight="500" d:DesignWidth="400">
+
     <Grid>
         <ScrollViewer
                      Background="#333333">
@@ -18,8 +16,8 @@
                    <RowDefinition Height="100"/>
                    <RowDefinition Height="60"/>
                    <RowDefinition Height="700"/>
-                   <RowDefinition Height="700"/>
-                   <RowDefinition Height="700"/>
+                   <RowDefinition Height="100"/>
+                   <RowDefinition Height="500"/>
                </Grid.RowDefinitions>
                
                <Grid.ColumnDefinitions>
@@ -28,42 +26,166 @@
                    <ColumnDefinition/>
                    <ColumnDefinition/>
                    <ColumnDefinition/>
+                   <ColumnDefinition/>
+                   <ColumnDefinition/>
                </Grid.ColumnDefinitions>
                
                <TextBlock Grid.Row="0" Grid.Column="0" 
-                          Grid.ColumnSpan="5"
+                          Grid.ColumnSpan="7"
                           Text="Hello, Nabuchonodozor!"
                           FontSize="56"
                           Margin="50, 20, 0, 20"/>
-               
                <TextBlock Grid.Row="1" Grid.Column="0"
-                          Grid.ColumnSpan="3"
+                          Grid.ColumnSpan="5"
                           Margin="50,0,0,0"
                           Text="Welcome to PetGallery!"
                           FontSize="36"/>
-               <TextBlock Grid.Row="2" Grid.Column="0" 
-                          Margin="50,0,0,0"
-                          Grid.ColumnSpan="3"
-                          FontSize="20"
-                          TextWrapping="Wrap"
-                          Text="{StaticResource About}"/>
                
-               <Image Grid.Row="1" Grid.Column="3" 
-                      Grid.RowSpan="2" Grid.ColumnSpan="2"
-                      Source="{Binding PrimaryImage}"
-                      VerticalAlignment="Top"/>
+               <WrapPanel Grid.Row="2" Grid.Column="0"
+                          Grid.ColumnSpan="7"
+                          Margin="50,0,50,0"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center">
+                   <Border CornerRadius="10"
+                           BorderBrush="White"
+                           Background="White"
+                           Width="400"
+                           Margin="20, 0,50,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                       <Image Source="{Binding PrimaryImage}"
+                              VerticalAlignment="Top"
+                              Margin="3"/>
+                   </Border>
+                   <TextBlock FontSize="24"
+                              TextWrapping="Wrap"
+                              MaxWidth="800"
+                              TextAlignment="Justify"
+                              Text="{StaticResource About}"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"/>
+                   
+               </WrapPanel>
+               
                <TextBlock Grid.Row="3" Grid.Column="0" 
-                          Margin="50,0,0,0"
-                          Grid.ColumnSpan="3"
-                          FontSize="20"
-                          TextWrapping="Wrap"
-                          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut maximus odio purus, et bibendum orci ornare eu. Donec quis scelerisque dolor. Cras rhoncus sed ex non volutpat. Sed sed aliquam purus, vitae suscipit enim. Maecenas at leo vel lorem scelerisque posuere. Nam eget magna eleifend, gravida nisi ac, semper augue. Suspendisse potenti. Fusce in nunc ut purus interdum bibendum ac non lorem."/>
-               <TextBlock Grid.Row="4" Grid.Column="0" 
-                          Margin="50,0,0,0"
-                          Grid.ColumnSpan="3"
-                          FontSize="20"
-                          TextWrapping="Wrap"
-                          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut maximus odio purus, et bibendum orci ornare eu. Donec quis scelerisque dolor. Cras rhoncus sed ex non volutpat. Sed sed aliquam purus, vitae suscipit enim. Maecenas at leo vel lorem scelerisque posuere. Nam eget magna eleifend, gravida nisi ac, semper augue. Suspendisse potenti. Fusce in nunc ut purus interdum bibendum ac non lorem."/>
+                          Grid.ColumnSpan="7"
+                          Text="Let's Start!"
+                          FontSize="56"
+                          Margin="50, 20, 0, 20"/>
+               
+               <Grid  Grid.Row="4" Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      Margin="70, 20, 70, 50">
+                   <Image Stretch="UniformToFill"
+                          Source="{Binding CatImage}">
+                   </Image>
+                   <Border BorderBrush="White"
+                           BorderThickness="3">
+                       <Button Content="Cats"
+                               FontSize="64"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Foreground="White"
+                               Command="{Binding ChangeViewCommand}"
+                               CommandParameter="Cat">
+                           <Button.Style>
+                               <Style TargetType="Button">
+                                   <Setter Property="Button.Background">
+                                       <Setter.Value>
+                                           <LinearGradientBrush>
+                                               <GradientStop Color="#3BB9CC" Offset="0.0"/>
+                                               <GradientStop Color="#98CD26" Offset="1.0"/>
+                                           </LinearGradientBrush>
+                                       </Setter.Value>
+                                   </Setter>
+                                   <Setter Property="Template">
+                                       <Setter.Value>
+                                           <ControlTemplate TargetType="Button">
+                                               <Grid Background="{TemplateBinding Background}">
+                                                   <ContentPresenter VerticalAlignment="Center"
+                                                                     HorizontalAlignment="Center"
+                                                                     Content="{TemplateBinding Content}"/>
+                                               </Grid>
+                                           </ControlTemplate>
+                                       </Setter.Value>
+                                   </Setter>
+                            
+                                   <Setter Property="Opacity" Value="0.5"/>
+                                   <Style.Triggers>
+                                       <Trigger Property="Button.IsMouseOver" Value="True">
+                                           <Setter Property="Button.Opacity" Value="0.8" />
+                                           <Setter Property="Button.Effect">
+                                               <Setter.Value>
+                                                   <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="#333"/>
+                                               </Setter.Value>
+                                           </Setter>
+                                       </Trigger>
+                                   </Style.Triggers>
+                               </Style>
+                           </Button.Style>
+                       </Button>
+                   </Border>
+               </Grid>
+               
+               
+               <Grid  Grid.Row="4" Grid.Column="4"
+                      Grid.ColumnSpan="3"
+                      Margin="70, 20, 70, 50">
+                   <Image Stretch="UniformToFill"
+                          Source="{Binding DogImage}"/>
+                   <Border BorderBrush="White"
+                           BorderThickness="3">
+                       <Button Content="Dogs"
+                               FontSize="64"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Foreground="White"
+                               Command="{Binding ChangeViewCommand}"
+                               CommandParameter="Dog">
+                           <Button.Style>
+                               <Style TargetType="Button">
+                                   <Setter Property="Button.Background">
+                                       <Setter.Value>
+                                           <LinearGradientBrush>
+                                               <GradientStop Color="#4F31CC" Offset="0.0"/>
+                                               <GradientStop Color="#CC1D71" Offset="1.0"/>
+                                           </LinearGradientBrush>
+                                       </Setter.Value>
+                                   </Setter>
+                                   <Setter Property="Template">
+                                       <Setter.Value>
+                                           <ControlTemplate TargetType="Button">
+                                               <Grid Background="{TemplateBinding Background}">
+                                                   <ContentPresenter VerticalAlignment="Center"
+                                                                     HorizontalAlignment="Center"
+                                                                     Content="{TemplateBinding Content}"/>
+                                               </Grid>
+                                           </ControlTemplate>
+                                       </Setter.Value>
+                                   </Setter>
+                            
+                                   <Setter Property="Opacity" Value="0.5"/>
+                                   <Style.Triggers>
+                                       <Trigger Property="Button.IsMouseOver" Value="True">
+                                           <Setter Property="Button.Opacity" Value="0.8" />
+                                           <Setter Property="Button.Effect">
+                                               <Setter.Value>
+                                                   <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="#333"/>
+                                               </Setter.Value>
+                                           </Setter>
+                                       </Trigger>
+                                   </Style.Triggers>
+                               </Style>
+                           </Button.Style>
+                       </Button>
+                   </Border>
+               </Grid>
+               
+               
            </Grid>
        </ScrollViewer>
     </Grid>

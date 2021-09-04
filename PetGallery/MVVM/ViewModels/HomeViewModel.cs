@@ -11,6 +11,8 @@ namespace PetGallery.MVVM.ViewModels
 {
     public class HomeViewModel : ObservableObject
     {
+        public RelayCommand ChangeViewCommand { get; set; }
+        
         private ImageSource _primaryImage;
         public ImageSource PrimaryImage
         {
@@ -21,23 +23,49 @@ namespace PetGallery.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public void SetSource(string url)
+        
+        private ImageSource _catImage;
+        public ImageSource CatImage
         {
-            var image =  new BitmapImage(new Uri(url));
-            PrimaryImage = image;
+            get => _catImage;
+            set
+            {
+                _catImage = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private ImageSource _dogImage;
+        public ImageSource DogImage
+        {
+            get => _dogImage;
+            set
+            {
+                _dogImage = value;
+                OnPropertyChanged();
+            }
         }
 
-        public HomeViewModel()
+        public HomeViewModel(RelayCommand myCollectionsViewCommand)
         {
-            Console.WriteLine("UUU");
             Task.Run((LoadRandomImage));
+            ChangeViewCommand = myCollectionsViewCommand;
         }
 
         private async void LoadRandomImage()
         {
-            var imageTask = await ImageProcessor.LoadImage();
-            Application.Current.Dispatcher.Invoke(() => SetSource(imageTask.Url));
+            var imageTaskMain = await ImageProcessor.GetCat();
+            var imageTaskCat = await ImageProcessor.GetCat();
+            var imageTaskDog = await ImageProcessor.GetDog();
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var image =  new BitmapImage(new Uri(imageTaskMain.Url));
+                PrimaryImage = image;
+                image = new BitmapImage(new Uri(imageTaskCat.Url));
+                CatImage = image;
+                image = new BitmapImage(new Uri(imageTaskDog.Url));
+                DogImage = image;
+            });
         }
     }
 }

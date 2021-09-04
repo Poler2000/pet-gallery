@@ -36,11 +36,15 @@ namespace PetGallery.MVVM.ViewModels
 
         private void PrepareCommands()
         {
-            HomeViewCommand = new RelayCommand(o => { CurrentView = new HomeViewModel(); });
-
             ExploreViewCommand = new RelayCommand(o => { CurrentView = new ExploreViewModel(); });
 
-            MyCollectionsViewCommand = new RelayCommand(o => { CurrentView = new MyCollectionsViewModel(); });
+            MyCollectionsViewCommand = new RelayCommand(o =>
+            {
+                Console.WriteLine(o); 
+                CurrentView = new MyCollectionsViewModel();
+            });
+            
+            HomeViewCommand = new RelayCommand(o => { CurrentView = new HomeViewModel(MyCollectionsViewCommand); });
 
             SettingsViewCommand = new RelayCommand(o => { CurrentView = new SettingsViewModel(); });
 
