@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using PetGallery.Core;
@@ -40,11 +41,10 @@ namespace PetGallery.MVVM.ViewModels
 
             MyCollectionsViewCommand = new RelayCommand(o =>
             {
-                Console.WriteLine(o); 
                 CurrentView = new MyCollectionsViewModel();
             });
             
-            HomeViewCommand = new RelayCommand(o => { CurrentView = new HomeViewModel(MyCollectionsViewCommand); });
+            HomeViewCommand = new RelayCommand(o => { CurrentView = new HomeViewModel(ExploreViewCommand); });
 
             SettingsViewCommand = new RelayCommand(o => { CurrentView = new SettingsViewModel(); });
 

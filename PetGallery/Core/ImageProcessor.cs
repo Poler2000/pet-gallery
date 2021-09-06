@@ -7,38 +7,11 @@ using PetGallery.MVVM.Models;
 
 namespace PetGallery.Core
 {
-    public class ImageProcessor
+    public static class ImageProcessor
     {
-        /*public static async Task<ImageModel> LoadImage(string url, string id)
+        private static async Task<ImageModel> LoadImage(string url)
         {
-            if (id is null)
-            {
-                return await LoadImage(url);
-            }
-
-            url = $"https://api.thecatapi.com/v1/images/{id}";
-
-            using (HttpResponseMessage response = await  ApiHelper.Client.GetAsync(url))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    ImageModel image = JsonConvert.DeserializeObject<ImageModel>(await response.Content.ReadAsStringAsync());
-                    if (image != null)
-                    {
-                        return image;
-                    }
-
-                    throw new Exception();
-
-                }
-
-                throw new Exception(response.ReasonPhrase);
-            }
-        }*/
-        
-        public static async Task<ImageModel> LoadImage(string url)
-        {
-            using (HttpResponseMessage response = await  ApiHelper.Client.GetAsync(url))
+            using (HttpResponseMessage response = await ApiHelper.Client.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -53,7 +26,6 @@ namespace PetGallery.Core
 
                 throw new Exception(response.ReasonPhrase);
             }
-            
         }
 
         public static async Task<ImageModel> GetCat(string id = "", string breedId = "")
@@ -78,6 +50,32 @@ namespace PetGallery.Core
             }
 
             return await LoadImage($"https://api.thedogapi.com/v1/images/{id}");
+        }
+
+        private static async Task<List<BreedModel>> GetBreeds(string url)
+        {
+            using (HttpResponseMessage response = await ApiHelper.Client.GetAsync(url))
+            {
+                if (!response.IsSuccessStatusCode) throw new Exception(response.ReasonPhrase);
+                
+                List<BreedModel> breeds = JsonConvert.DeserializeObject<List<BreedModel>>(await response.Content.ReadAsStringAsync());
+                if (breeds != null)
+                {
+                    return breeds;
+                }
+                throw new Exception();
+
+            }
+        }
+
+        public static async Task<List<BreedModel>> GetCatBreeds()
+        {
+            return await GetBreeds("https://api.thecatapi.com/v1/breeds");
+        }
+        
+        public static async Task<List<BreedModel>> GetDogBreeds()
+        {
+            return await GetBreeds("https://api.thedogapi.com/v1/breeds");
         }
     }
 }

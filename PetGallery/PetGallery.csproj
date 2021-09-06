@@ -135,6 +135,7 @@
         <Compile Include="Core\ImageProcessor.cs" />
         <Compile Include="Core\ObservableObject.cs" />
         <Compile Include="Core\RelayCommand.cs" />
+        <Compile Include="Core\ViewConverter.cs" />
         <Compile Include="DB\SqliteDataAccess.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -142,6 +143,7 @@
         </Compile>
         <Page Include="MVVM\Views\CollectionView.xaml" />
         <Page Include="MVVM\Views\ExploreView.xaml" />
+        <Page Include="MVVM\Views\FilterMenuView.xaml" />
         <Page Include="MVVM\Views\HomeView.xaml" />
         <Page Include="MVVM\Views\ImageDetailsView.xaml" />
         <Page Include="MVVM\Views\LoginView.xaml" />
@@ -155,10 +157,12 @@
         <Page Include="Themes\MenuButtonTheme.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="MVVM\Models\BreedModel.cs" />
         <Compile Include="MVVM\Models\ImageModel.cs" />
         <Compile Include="MVVM\Models\UserModel.cs" />
         <Compile Include="MVVM\ViewModels\CollectionViewModel.cs" />
         <Compile Include="MVVM\ViewModels\ExploreViewModel.cs" />
+        <Compile Include="MVVM\ViewModels\FilterMenuViewModel.cs" />
         <Compile Include="MVVM\ViewModels\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModels\ImageDetailsViewModel.cs" />
         <Compile Include="MVVM\ViewModels\LoginViewModel.cs" />
@@ -171,6 +175,9 @@
         </Compile>
         <Compile Include="MVVM\Views\ExploreView.xaml.cs">
           <DependentUpon>ExploreView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\Views\FilterMenuView.xaml.cs">
+          <DependentUpon>FilterMenuView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\Views\HomeView.xaml.cs">
           <DependentUpon>HomeView.xaml</DependentUpon>

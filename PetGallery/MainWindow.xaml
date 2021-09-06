@@ -63,9 +63,9 @@
                 <RadioButton Content="Home"
                              Height="50"
                              FontSize="20"
-                             IsChecked="True"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding HomeViewCommand}">
+                             Command="{Binding HomeViewCommand}"
+                             IsChecked="{Binding CurrentView, Converter={StaticResource ResourceKey=ViewConverter}, ConverterParameter=Home}">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="Images/outline_home_white_36dp.png"/>
                     </RadioButton.Tag>
@@ -76,6 +76,7 @@
                              Height="50"
                              FontSize="20"
                              Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="{Binding CurrentView, Converter={StaticResource ResourceKey=ViewConverter}, ConverterParameter=Explore}"
                              Command="{Binding ExploreViewCommand}">
                     <RadioButton.Tag>
                         <BitmapImage UriSource="Images/outline_search_white_36dp.png"/>

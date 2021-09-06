@@ -6,7 +6,45 @@
              xmlns:local="clr-namespace:PetGallery.MVVM.Views"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <UserControl.Resources>
+        <ControlTemplate x:Key="VerticalExpander" TargetType="{x:Type Expander}">
+            <Border Name="ContentBorder"
+                    Width="0">
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsExpanded"
+                         Value="True">
+                    <Setter TargetName="ContentBorder"
+                            Property="Width"
+                            Value="Auto" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid Background="#333">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <DockPanel Grid.Row="0" Grid.RowSpan="2"
+                   LastChildFill="True" Grid.Column="3">
+            <Grid DockPanel.Dock="Right">
+                <Expander Header="Filter"
+                          FontSize="24"
+                          Foreground="White"
+                          IsExpanded="{Binding IsMenuExpanded}">
+                    <ContentControl Content="{Binding SideMenu}"/>
+                </Expander>
+            </Grid>
+        </DockPanel>
     </Grid>
 </UserControl>

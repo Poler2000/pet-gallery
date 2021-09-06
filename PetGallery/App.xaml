@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:PetGallery"
              xmlns:viewModel="clr-namespace:PetGallery.MVVM.ViewModels"
              xmlns:views="clr-namespace:PetGallery.MVVM.Views"
+             xmlns:core="clr-namespace:PetGallery.Core"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          <ResourceDictionary>
@@ -14,6 +15,8 @@
                  <ResourceDictionary Source="Themes/ImageButtonTheme.xaml"/>
                  <ResourceDictionary Source="./StringResources.xaml"/>
              </ResourceDictionary.MergedDictionaries>
+             
+             <core:ViewConverter x:Key="ViewConverter"/>
              
              <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
                  <views:LoginView/>
@@ -27,12 +30,16 @@
                  <views:ExploreView/>
              </DataTemplate>
              
+             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                 <views:SettingsView/>
+             </DataTemplate>
+             
              <DataTemplate DataType="{x:Type viewModel:MyCollectionsViewModel}">
                  <views:MyCollectionsView/>
              </DataTemplate>
              
-             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-                 <views:SettingsView/>
+             <DataTemplate DataType="{x:Type viewModel:FilterMenuViewModel}">
+                 <views:FilterMenuView/>
              </DataTemplate>
              
              <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
