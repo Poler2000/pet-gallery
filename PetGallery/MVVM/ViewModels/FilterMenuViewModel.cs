@@ -18,6 +18,8 @@ namespace PetGallery.MVVM.ViewModels
         private bool _isBreedBoxEnabled;
         
         public static string[] Pets { get; set; } = {"Dog", "Cat"};
+        public static int[] Limits { get; set; } = {5, 10, 15, 20, 30};
+        private ExploreViewModel ExploreViewModel { get; set; }
 
         public string SelectedPet
         {
@@ -46,8 +48,10 @@ namespace PetGallery.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+        
+        public int SelectedLimit { get; set; }
 
-        public List<BreedModel> CatBreeds
+        private List<BreedModel> CatBreeds
         {
             get => _catBreeds;
             set
@@ -57,7 +61,7 @@ namespace PetGallery.MVVM.ViewModels
             }
         }
 
-        public List<BreedModel> DogBreeds
+        private List<BreedModel> DogBreeds
         {
             get => _dogBreeds;
             set
@@ -76,9 +80,18 @@ namespace PetGallery.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+        
+        public BreedModel SelectedBreed { get; set; }
+        
+        public RelayCommand FilterCommand { get; set; }
 
-        public FilterMenuViewModel()
+        public FilterMenuViewModel(ExploreViewModel vm)
         {
+            ExploreViewModel = vm;
+            FilterCommand = new RelayCommand(o =>
+            {
+                ExploreViewModel.Reload(SelectedPet, SelectedBreed, SelectedLimit);
+            });
             Task.Run(LoadBreeds);
         }
         

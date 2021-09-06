@@ -7,20 +7,11 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ControlTemplate x:Key="VerticalExpander" TargetType="{x:Type Expander}">
-            <Border Name="ContentBorder"
-                    Width="0">
-                <ContentPresenter />
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsExpanded"
-                         Value="True">
-                    <Setter TargetName="ContentBorder"
-                            Property="Width"
-                            Value="Auto" />
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
+        <DataTemplate x:Key="ItemTemplate">
+            <WrapPanel>
+                <Image Width="300" Height="300" Stretch="Fill" Source="{Binding}"/>
+            </WrapPanel>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid Background="#333">
         <Grid.ColumnDefinitions>
@@ -35,8 +26,25 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
+        <Grid Grid.RowSpan="2" Grid.ColumnSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ListView Grid.Row="1"
+                      ItemTemplate="{StaticResource ItemTemplate}"
+                      ItemsSource="{Binding Path = PetImages}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="4" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </Grid>
+        
         <DockPanel Grid.Row="0" Grid.RowSpan="2"
-                   LastChildFill="True" Grid.Column="3">
+                   LastChildFill="True" Grid.Column="3"
+                   >
             <Grid DockPanel.Dock="Right">
                 <Expander Header="Filter"
                           FontSize="24"

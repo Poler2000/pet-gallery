@@ -18,15 +18,22 @@
                 <TextBlock Text="Breed"/>
                 <ComboBox ItemsSource="{Binding CurrentBreeds}" 
                           DisplayMemberPath="Name"
-                          SelectedValuePath="Name"
+                          SelectedItem="{Binding SelectedBreed}"
                           IsEnabled="{Binding IsBreedBoxEnabled}"/>
+            </StackPanel>
+            
+            <StackPanel Margin="20, 30, 20, 30">
+                <TextBlock Text="Limit"/>
+                <ComboBox ItemsSource="{Binding Limits}" 
+                          SelectedItem="{Binding SelectedLimit}"/>
             </StackPanel>
             
             <Button Style="{StaticResource LoginFormButton}"
                     Content="Filter"
                     MaxWidth="150"
                     Height="40"
-                    Margin="20"/>
+                    Margin="20"
+                    Command="{Binding FilterCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
