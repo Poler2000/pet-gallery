@@ -151,10 +151,12 @@
         <Page Include="MVVM\Views\RegisterView.xaml" />
         <Page Include="MVVM\Views\SettingsView.xaml" />
         <Page Include="StringResources.xaml" />
+        <Page Include="StyleVariables.xaml" />
         <Page Include="Themes\ImageButtonTheme.xaml" />
         <Page Include="Themes\InterfaceButtonTheme.xaml" />
         <Page Include="Themes\LoginFormButton.xaml" />
         <Page Include="Themes\MenuButtonTheme.xaml" />
+        <Page Include="Themes\TextBoxTheme.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\Models\BreedModel.cs" />

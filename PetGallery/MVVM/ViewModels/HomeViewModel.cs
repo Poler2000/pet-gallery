@@ -58,12 +58,12 @@ namespace PetGallery.MVVM.ViewModels
             var imageTaskCat = await ImageProcessor.GetCat();
             var imageTaskDog = await ImageProcessor.GetDog();
             Application.Current.Dispatcher.Invoke(() =>
-            {
-                var image =  new BitmapImage(new Uri(imageTaskMain.Url));
+            { 
+                var image =  new BitmapImage(imageTaskMain.Url);
                 PrimaryImage = image;
-                image = new BitmapImage(new Uri(imageTaskCat.Url));
+                image = new BitmapImage(imageTaskCat.Url);
                 CatImage = image;
-                image = new BitmapImage(new Uri(imageTaskDog.Url));
+                image = new BitmapImage(imageTaskDog.Url);
                 DogImage = image;
             });
         }

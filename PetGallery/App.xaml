@@ -9,10 +9,12 @@
     <Application.Resources>
          <ResourceDictionary>
              <ResourceDictionary.MergedDictionaries>
+                 <ResourceDictionary Source="./StyleVariables.xaml"/>
                  <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
                  <ResourceDictionary Source="Themes/LoginFormButton.xaml"/>
                  <ResourceDictionary Source="Themes/InterfaceButtonTheme.xaml"/>
                  <ResourceDictionary Source="Themes/ImageButtonTheme.xaml"/>
+                 <ResourceDictionary Source="Themes/TextBoxTheme.xaml"></ResourceDictionary>
                  <ResourceDictionary Source="./StringResources.xaml"/>
              </ResourceDictionary.MergedDictionaries>
              
@@ -36,6 +38,10 @@
              
              <DataTemplate DataType="{x:Type viewModel:MyCollectionsViewModel}">
                  <views:MyCollectionsView/>
+             </DataTemplate>
+             
+             <DataTemplate DataType="{x:Type viewModel:ImageDetailsViewModel}">
+                 <views:ImageDetailsView/>
              </DataTemplate>
              
              <DataTemplate DataType="{x:Type viewModel:FilterMenuViewModel}">

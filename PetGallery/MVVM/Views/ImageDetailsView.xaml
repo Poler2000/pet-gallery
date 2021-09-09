@@ -6,15 +6,63 @@
              xmlns:local="clr-namespace:PetGallery.MVVM.Views"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <StackPanel>
-            <Image x:Name="DetailedImage"
-                   HorizontalAlignment="Stretch"/>
-            <TextBox x:Name="TitleTextBox"
-                     Text="Hello"/>
-            <Button Content="Add to other collection"/>
-            <Button Content="Remove"/>
-            <TextBox x:Name="DescriptionTextBox"></TextBox>
-        </StackPanel>
+    <Grid Visibility="{Binding ViewVisibility}">
+        <ScrollViewer>
+            <Grid ScrollViewer.CanContentScroll="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+        
+                <Border Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Background="#333333"
+                        Opacity="0.8">
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding ReturnCommand}"/>
+                    </Border.InputBindings>
+                </Border>
+        
+                <StackPanel DataContext="{Binding CurrentImage}"
+                            Grid.Column="1"
+                            Background="#333333">
+                    <Border CornerRadius="10"
+                            BorderBrush="White"
+                            Background="White"
+                            Margin="30"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch">
+                        <Image HorizontalAlignment="Stretch"
+                               Source="{Binding Url}">
+                            <Image.ToolTip>
+                                <ToolTip DataContext="{Binding PlacementTarget, 
+                            RelativeSource={RelativeSource Self}}">
+                                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,7,5,5">
+                                        <Image Source="{Binding Source}" Stretch="None" />
+                                    </Border>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+                    </Border>
+                    <TextBox Text="{Binding Title}"
+                             Margin="20"
+                             FontSize="24"
+                             Style="{StaticResource TextBoxTheme}"
+                             MaxLength="30"/>
+                    <Button Content="Add to collection"
+                            Margin="20"/>
+                    <Button Content="Remove"
+                            Margin="20"/>
+                    <TextBox Margin="20"
+                             FontSize="24"
+                             MaxLines="5"
+                             TextWrapping="Wrap"
+                             Height="160"
+                             Style="{StaticResource TextBoxTheme}"
+                             Text = "{Binding Description}"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

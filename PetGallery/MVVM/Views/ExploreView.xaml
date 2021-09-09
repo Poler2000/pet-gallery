@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="ItemTemplate">
             <WrapPanel>
-                <Image Width="300" Height="300" Stretch="Fill" Source="{Binding}"/>
+                <Image Width="300" Height="300" Stretch="Fill" Source="{Binding Url}"/>
             </WrapPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -21,19 +21,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Grid.RowDefinitions>
-            <RowDefinition Height="90"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
         
-        <Grid Grid.RowSpan="2" Grid.ColumnSpan="4">
+        <Grid Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <ListView Grid.Row="1"
+            <ListView Grid.Row="1" 
                       ItemTemplate="{StaticResource ItemTemplate}"
-                      ItemsSource="{Binding Path = PetImages}">
+                      ItemsSource="{Binding Path = PetImages}"
+                      SelectedItem="{Binding SelectedImage}">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="4" />
@@ -42,9 +39,7 @@
             </ListView>
         </Grid>
         
-        <DockPanel Grid.Row="0" Grid.RowSpan="2"
-                   LastChildFill="True" Grid.Column="3"
-                   >
+        <DockPanel LastChildFill="True" Grid.Column="3">
             <Grid DockPanel.Dock="Right">
                 <Expander Header="Filter"
                           FontSize="24"
@@ -54,5 +49,8 @@
                 </Expander>
             </Grid>
         </DockPanel>
+        
+         <ContentControl Grid.Column="0" Grid.ColumnSpan="4"
+                         Content="{Binding DetailsView}"/>
     </Grid>
 </UserControl>

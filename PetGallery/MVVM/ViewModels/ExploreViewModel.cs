@@ -11,20 +11,9 @@ namespace PetGallery.MVVM.ViewModels
 {
     public class ExploreViewModel : ObservableObject
     {
-        private bool _isMenuExpanded;
-        private List<ImageSource> _petImages;
+        private List<ImageModel> _petImages;
 
-        public bool IsMenuExpanded
-        {
-            get => _isMenuExpanded;
-            set
-            {
-                _isMenuExpanded = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public List<ImageSource> PetImages
+        public List<ImageModel> PetImages
         {
             get => _petImages;
             set
@@ -33,41 +22,44 @@ namespace PetGallery.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-        public RelayCommand ExpandMenuCommand { get; set; }
+        
+        private ImageModel _selectedImage;
 
+        public ImageModel SelectedImage
+        {
+            get => _selectedImage;
+            set
+            {
+                _selectedImage = value;
+                Console.WriteLine(_selectedImage.Url);
+                DetailsView = new ImageDetailsViewModel(_selectedImage);
+                OnPropertyChanged();
+            }
+        }
+
+        private ImageDetailsViewModel _detailsView;
+
+        public ImageDetailsViewModel DetailsView
+        {
+            get => _detailsView;
+            set
+            {
+                _detailsView = value;
+                OnPropertyChanged();
+            }
+        }
+        
         public ExploreViewModel()
         {
             SideMenu = new FilterMenuViewModel(this);
-            ExpandMenuCommand = new RelayCommand(o =>
-            {
-                IsMenuExpanded = !IsMenuExpanded;
-            });
+
         }
 
         public ExploreViewModel(string animal)
         {
             SideMenu = new FilterMenuViewModel(this);
-            ExpandMenuCommand = new RelayCommand(o =>
-            {
-                IsMenuExpanded = !IsMenuExpanded;
-            });
         }
 
-        private async void Test()
-        {
-            var imageModels = await ImageProcessor.GetCats();
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                var list = new List<ImageSource>();
-                foreach (var im in imageModels)
-                {
-                    list.Add(new BitmapImage(new Uri(im.Url)));
-                }
-                PetImages = list;
-                Console.WriteLine("DONE!");
-            });
-        }
-        
         private ObservableObject _sideMenu;
         
         public ObservableObject SideMenu
@@ -87,12 +79,13 @@ namespace PetGallery.MVVM.ViewModels
                 : ImageProcessor.GetDogs(selectedLimit, selectedBreed?.Id));
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var list = new List<ImageSource>();
+                /*var list = new List<ImageSource>();
                 foreach (var im in imageModels)
                 {
-                    list.Add(new BitmapImage(new Uri(im.Url)));
+                    list.Add(new BitmapImage(im.Url));
                 }
-                PetImages = list;
+                PetImages = list;*/
+                PetImages = imageModels;
                 Console.WriteLine("DONE!");
             });
         }
