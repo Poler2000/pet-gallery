@@ -46,7 +46,8 @@
                          HorizontalAlignment="Center"
                          Margin="0,50,0,0">
                 <TextBox x:Name="EmailBox"
-                         Text="{Binding Username, Mode=OneWayToSource}"
+                         Text="{Binding Email, Mode=OneWayToSource, 
+                         ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="White"
@@ -55,7 +56,8 @@
                          HorizontalContentAlignment="Left"
                          Height="36"
                          BorderThickness="0"
-                         Margin="0,0,5,0"/>
+                         Margin="0,0,5,0"
+                         Style="{StaticResource TextBoxErrorTheme}"/>
                 <Image Source="../../Images/outline_account_circle_white_36dp.png" Width="36"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>
@@ -70,6 +72,7 @@
                          Margin="0,50,0,0">
                 <PasswordBox x:Name="PasswordBox"
                              Password="Password"
+                             PasswordChanged="PasswordBox_PasswordChanged"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"

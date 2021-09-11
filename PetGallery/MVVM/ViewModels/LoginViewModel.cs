@@ -1,7 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Security;
+using System.Text.RegularExpressions;
 using System.Windows;
 using PetGallery.Core;
 using PetGallery.MVVM.Models;
+using PetGallery.MVVM.Views;
 
 namespace PetGallery.MVVM.ViewModels
 {
@@ -12,11 +16,22 @@ namespace PetGallery.MVVM.ViewModels
         public RelayCommand LoginCommand { get; set; }
         public RelayCommand LoginCommandCallback { get; set; }
         public RelayCommand RegisterCommandCallback { get; set; }
-        
-        public string Username { get; set; }
-        public string Password { get; set; }
 
+        private string _email;
         private Visibility _isInfoVisible = Visibility.Hidden;
+
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        private SecureString SecurePassword { get; set; }
+
         public Visibility IsInfoVisible
         {
             get => _isInfoVisible;
@@ -49,10 +64,16 @@ namespace PetGallery.MVVM.ViewModels
         {
             var userData = new UserModel
             {
-                Email = Username,
-                Password = Password
+                Email = Email,
+                Password = PasswordHasher.GenerateHash(SecurePassword)
             };
             return userData;
+        }
+
+        public void SetPassword(SecureString pwd)
+        {
+            SecurePassword = pwd.Copy();
+            SecurePassword.MakeReadOnly();
         }
     }
 }

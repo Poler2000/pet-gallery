@@ -104,10 +104,6 @@ namespace PetGallery.MVVM.ViewModels
             {
                 DogBreeds = dogBreeds;
                 CatBreeds = catBreeds;
-                foreach (var b in CatBreeds)
-                {
-                    Console.WriteLine($"id: {b.Id}, name: {b.Name}, origin: {b.Origin}, life span: {b.LifeSpan}");
-                }
             });
         }
     }

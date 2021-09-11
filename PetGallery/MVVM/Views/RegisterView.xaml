@@ -45,7 +45,9 @@
                          HorizontalAlignment="Center"
                          Margin="0,30,0,0">
                 <TextBox x:Name="UsernameBox"
-                         Text="Username"
+                         Style="{StaticResource TextBoxErrorTheme}"
+                         Text="{Binding Username,
+                         UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="White"
@@ -68,7 +70,9 @@
                          HorizontalAlignment="Center"
                          Margin="0,50,0,0">
                 <TextBox x:Name="EmailBox"
-                         Text="E-mail"
+                         Style="{StaticResource TextBoxErrorTheme}"
+                         Text="{Binding Email,
+                         UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="White"
@@ -92,6 +96,8 @@
                          Margin="0,50,0,0">
                 <PasswordBox x:Name="PasswordBox"
                              Password="Password"
+                             Tag="{Binding PasswordTag, ValidatesOnDataErrors=True}"
+                             PasswordChanged="PasswordBox_PasswordChanged"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -101,7 +107,9 @@
                              Opacity="0.5"
                              Height="36"
                              BorderThickness="0"
-                             Margin="0,0,5,0"/>
+                             Margin="0,0,5,0"
+                             Style="{StaticResource TextBoxErrorTheme}">
+                </PasswordBox>
                 <Image Source="../../Images/outline_vpn_key_white_36dp.png" Width="36"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>

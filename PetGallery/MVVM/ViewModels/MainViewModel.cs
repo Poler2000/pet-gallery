@@ -58,6 +58,8 @@ namespace PetGallery.MVVM.ViewModels
                     }
                     
                     Console.WriteLine(userData.Login);
+                    Console.WriteLine(userData.Password);
+                    Console.WriteLine(userData.Email);
                     return;
                 }
 

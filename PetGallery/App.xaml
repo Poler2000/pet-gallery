@@ -14,7 +14,8 @@
                  <ResourceDictionary Source="Themes/LoginFormButton.xaml"/>
                  <ResourceDictionary Source="Themes/InterfaceButtonTheme.xaml"/>
                  <ResourceDictionary Source="Themes/ImageButtonTheme.xaml"/>
-                 <ResourceDictionary Source="Themes/TextBoxTheme.xaml"></ResourceDictionary>
+                 <ResourceDictionary Source="Themes/TextBoxTheme.xaml"/>
+                 <ResourceDictionary Source="Themes/TextBoxErrorTheme.xaml"/>
                  <ResourceDictionary Source="./StringResources.xaml"/>
              </ResourceDictionary.MergedDictionaries>
              

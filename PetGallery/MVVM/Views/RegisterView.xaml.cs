@@ -1,12 +1,14 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using PetGallery.MVVM.ViewModels;
 
 namespace PetGallery.MVVM.Views
 {
     public partial class RegisterView : UserControl
     {
-        private const string EmailBoxText = "Enter email";
-        private const string UsernameBoxText = "Enter username";
+        private const string EmailBoxText = "Enter@email.com";
+        private const string UsernameBoxText = "Enter_username";
         private const string PasswordBoxText = "Password";
         
         public RegisterView()
@@ -63,6 +65,11 @@ namespace PetGallery.MVVM.Views
         {
             if (string.IsNullOrWhiteSpace(UsernameBox.Text))
                 UsernameBox.Text = UsernameBoxText;
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            (DataContext as RegisterViewModel)?.SetPassword((sender as PasswordBox)?.SecurePassword);
         }
     }
 }

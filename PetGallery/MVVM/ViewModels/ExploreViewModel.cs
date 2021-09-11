@@ -79,14 +79,7 @@ namespace PetGallery.MVVM.ViewModels
                 : ImageProcessor.GetDogs(selectedLimit, selectedBreed?.Id));
             Application.Current.Dispatcher.Invoke(() =>
             {
-                /*var list = new List<ImageSource>();
-                foreach (var im in imageModels)
-                {
-                    list.Add(new BitmapImage(im.Url));
-                }
-                PetImages = list;*/
                 PetImages = imageModels;
-                Console.WriteLine("DONE!");
             });
         }
     }

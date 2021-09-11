@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using PetGallery.MVVM.ViewModels;
 
 namespace PetGallery.MVVM.Views
 {
     public partial class LoginView : UserControl
     {
-        private const string EmailBoxText = "Enter email";
+        public const string EmailBoxText = "Enter email";
         private const string PasswordBoxText = "Password";
         
         public LoginView()
@@ -46,6 +47,11 @@ namespace PetGallery.MVVM.Views
         {
             if (string.IsNullOrWhiteSpace(PasswordBox.Password))
                 PasswordBox.Password = PasswordBoxText;
+        }
+        
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            (DataContext as LoginViewModel)?.SetPassword((sender as PasswordBox)?.SecurePassword);
         }
     }
 }

@@ -1,13 +1,66 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Security;
+using System.Text.RegularExpressions;
+using System.Windows;
 using PetGallery.Core;
+using PetGallery.MVVM.Models;
 
 namespace PetGallery.MVVM.ViewModels
 {
-    public class RegisterViewModel : ObservableObject
+    public class RegisterViewModel : ObservableObject, IDataErrorInfo
     {
         public RelayCommand InfoCommand { get; set; }
         public RelayCommand RegisterCommand { get; set; }
         public RelayCommand LoginCommand { get; set; }
+        
+        private static readonly Regex EmailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        private string _email = "Enter@email.com";
+        private SecureString _password;
+        private string _username = "Enter_username";
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        public SecureString SecurePassword
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public void SetPassword(SecureString pwd)
+        {
+            SecurePassword = pwd.Copy();
+            SecurePassword.MakeReadOnly();
+            OnPropertyChanged("PasswordTag");
+        }
+
+        public bool PasswordTag
+        {
+            get { return false; }
+        }
+
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged();
+            } 
+        }
 
         private Visibility _isInfoVisible = Visibility.Hidden;
         public Visibility IsInfoVisible
@@ -29,7 +82,73 @@ namespace PetGallery.MVVM.ViewModels
             });
 
             LoginCommand = loginCommand;
-            RegisterCommand = registerCommand;
+            RegisterCommand = new RelayCommand(o =>
+            {
+                if (!(IsValidEmail() && IsValidUsername() && IsValidPassword()))
+                {
+                    return;
+                }
+                registerCommand.Execute(new UserModel
+                {
+                    Login = Username,
+                    Email = Email,
+                    Password = SecurePassword.ToString()
+                });
+            });
         }
+
+        private bool IsValidPassword()
+        {
+            return SecurePassword.Length is (> 7 and < 25);
+        }
+
+        private bool IsValidUsername()
+        {
+            return !(string.IsNullOrEmpty(Username) || Username.Contains(" "));
+           
+        }
+
+        private bool IsValidEmail()
+        {
+            return !(string.IsNullOrEmpty(Email) || !EmailRegex.IsMatch(Email));
+        }
+        
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case "Email":
+                    {
+                        if (!IsValidEmail())
+                        {
+                            return "Please provide a valid email";
+                        } 
+                        break;
+                    }
+                    case "Username":
+                    {
+                        if (!IsValidUsername())
+                        {
+                            return "Username shouldn't be empty and shouldn't contain whitespaces";
+                        }
+                        break;
+                    }
+                    case "PasswordTag":
+                    {
+                        if (!IsValidPassword())
+                        {
+                            return "Password should have between 8 and 24 characters";
+                        }
+                        break;
+                    }
+                }
+
+                return null;
+            }
+        }
+
+        public string Error { get; }
     }
 }
