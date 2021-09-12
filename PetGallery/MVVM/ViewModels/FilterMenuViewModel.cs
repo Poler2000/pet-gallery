@@ -26,7 +26,6 @@ namespace PetGallery.MVVM.ViewModels
             get => _selectedPet;
             set
             {
-                Console.WriteLine("Change!");
                 _selectedPet = value;
                 if (!Pets.Contains(_selectedPet))
                 {

@@ -88,7 +88,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Foreground="White"
-                               Command="{Binding ChangeViewCommand}"
+                               Command="{Binding ChangeViewWithCatCommand}"
                                CommandParameter="Cat">
                            <Button.Style>
                                <Style TargetType="Button">
@@ -144,7 +144,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Foreground="White"
-                               Command="{Binding ChangeViewCommand}"
+                               Command="{Binding ChangeViewWithDogCommand}"
                                CommandParameter="Dog">
                            <Button.Style>
                                <Style TargetType="Button">

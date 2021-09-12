@@ -9,11 +9,12 @@
     <UserControl.Resources>
         <DataTemplate x:Key="ItemTemplate">
             <WrapPanel>
-                <Image Width="300" Height="300" Stretch="Fill" Source="{Binding Url}"/>
+                <Image Width="300" Height="300" 
+                       Stretch="Fill" Source="{Binding Url}"/>
             </WrapPanel>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid Background="#333">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -21,16 +22,14 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        
         <Grid Grid.ColumnSpan="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <ListView Grid.Row="1" 
+            <ListView Grid.Row="0" 
                       ItemTemplate="{StaticResource ItemTemplate}"
                       ItemsSource="{Binding Path = PetImages}"
-                      SelectedItem="{Binding SelectedImage}">
+                      SelectedItem="{Binding SelectedImage}"
+                      Background="#333333"
+                      BorderThickness="0"
+                      HorizontalContentAlignment="Center">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="4" />

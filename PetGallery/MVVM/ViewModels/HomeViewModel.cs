@@ -11,7 +11,8 @@ namespace PetGallery.MVVM.ViewModels
 {
     public class HomeViewModel : ObservableObject
     {
-        public RelayCommand ChangeViewCommand { get; set; }
+        public RelayCommand ChangeViewWithCatCommand { get; set; }
+        public RelayCommand ChangeViewWithDogCommand { get; set; }
         
         private ImageSource _primaryImage;
         public ImageSource PrimaryImage
@@ -49,7 +50,10 @@ namespace PetGallery.MVVM.ViewModels
         public HomeViewModel(RelayCommand myCollectionsViewCommand)
         {
             Task.Run((LoadRandomImage));
-            ChangeViewCommand = myCollectionsViewCommand;
+            ChangeViewWithCatCommand = new RelayCommand(
+                o => myCollectionsViewCommand.Execute("Cat"));
+            ChangeViewWithDogCommand = new RelayCommand(
+                o => myCollectionsViewCommand.Execute("Dog"));
         }
 
         private async void LoadRandomImage()

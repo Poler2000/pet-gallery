@@ -12,10 +12,8 @@ namespace PetGallery.Core
         {
             if (PropertyChanged is null)
             {
-                Console.WriteLine("Null");
                 return;
             }
-            Console.WriteLine("Not Null");
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

@@ -31,7 +31,6 @@ namespace PetGallery.MVVM.ViewModels
             set
             {
                 _selectedImage = value;
-                Console.WriteLine(_selectedImage.Url);
                 DetailsView = new ImageDetailsViewModel(_selectedImage);
                 OnPropertyChanged();
             }

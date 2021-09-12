@@ -59,7 +59,8 @@
             </StackPanel>
             
             <!-- Navigation bar -->
-            <StackPanel Grid.Row="1" Grid.Column="0">
+            <StackPanel Grid.Row="1" Grid.Column="0"
+                        Visibility="{Binding MenuVisibility}">
                 <RadioButton Content="Home"
                              Height="50"
                              FontSize="20"

@@ -14,8 +14,6 @@ namespace PetGallery.MVVM.ViewModels
         public RelayCommand InfoCommand { get; set; }
         public RelayCommand RegisterCommand { get; set; }
         public RelayCommand LoginCommand { get; set; }
-        public RelayCommand LoginCommandCallback { get; set; }
-        public RelayCommand RegisterCommandCallback { get; set; }
 
         private string _email;
         private Visibility _isInfoVisible = Visibility.Hidden;
@@ -78,7 +76,6 @@ namespace PetGallery.MVVM.ViewModels
 
         public void Reset()
         {
-            Email = "";
         }
     }
 }

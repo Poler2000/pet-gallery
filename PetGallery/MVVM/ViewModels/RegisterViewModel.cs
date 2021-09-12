@@ -92,7 +92,7 @@ namespace PetGallery.MVVM.ViewModels
                 {
                     Login = Username,
                     Email = Email,
-                    Password = SecurePassword.ToString()
+                    Password = PasswordHasher.GenerateHash(SecurePassword)
                 });
             });
         }

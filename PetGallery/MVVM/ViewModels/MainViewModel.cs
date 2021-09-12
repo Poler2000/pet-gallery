@@ -19,7 +19,7 @@ namespace PetGallery.MVVM.ViewModels
         private RelayCommand RegisterCommand { get; set; }
 
         private ObservableObject _currentView;
-        private UserManager _userManager;
+        private readonly UserManager _userManager;
         
         public ObservableObject CurrentView
         {
@@ -27,6 +27,18 @@ namespace PetGallery.MVVM.ViewModels
             set
             {
                 _currentView = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private Visibility _menuVisibility = Visibility.Hidden;
+
+        public Visibility MenuVisibility
+        {
+            get => _menuVisibility;
+            set
+            {
+                _menuVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -40,7 +52,15 @@ namespace PetGallery.MVVM.ViewModels
 
         private void PrepareCommands()
         {
-            ExploreViewCommand = new RelayCommand(o => { CurrentView = new ExploreViewModel(); });
+            ExploreViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = new ExploreViewModel();
+                string pet = o as string;
+                if (pet is not null)
+                {
+                    (CurrentView as ExploreViewModel)?.Reload(pet);
+                }
+            });
 
             MyCollectionsViewCommand = new RelayCommand(o =>
             {
@@ -89,6 +109,7 @@ namespace PetGallery.MVVM.ViewModels
             if (_userManager.RegisterUserIfNotExist(userData))
             {
                 CurrentView = new HomeViewModel(ExploreViewCommand);
+                MenuVisibility = Visibility.Visible;
                 return;
             }
 
@@ -100,6 +121,7 @@ namespace PetGallery.MVVM.ViewModels
             if (_userManager.LoginUser(userData))
             {
                 CurrentView = new HomeViewModel(ExploreViewCommand);
+                MenuVisibility = Visibility.Visible;
                 return;
             }
             MessageBox.Show("Email or password incorrect", "Pet Gallery");

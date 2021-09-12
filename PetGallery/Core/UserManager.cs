@@ -31,7 +31,6 @@ namespace PetGallery.Core
         public bool LoginUser(UserModel userdata)
         {
             string sql = $"SELECT * FROM Users WHERE Email = '{userdata.Email}' AND Password = '{userdata.Password}'";
-            Console.WriteLine(sql);
 
             return _database.LoadData<UserModel>(sql).Count == 1;
         }
