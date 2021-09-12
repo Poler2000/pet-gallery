@@ -26,7 +26,7 @@ namespace PetGallery.Core
                 using (var sha256 = SHA256.Create())
                 {
                     var hash = sha256.ComputeHash(bytes);
-                    return Encoding.Default.GetString(hash);
+                    return Encoding.UTF8.GetString(hash);
                 }
             } 
             finally 

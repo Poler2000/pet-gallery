@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using PetGallery.Core;
+using PetGallery.DB;
 using PetGallery.MVVM.Models;
 
 namespace PetGallery.MVVM.ViewModels
@@ -18,6 +19,7 @@ namespace PetGallery.MVVM.ViewModels
         private RelayCommand RegisterCommand { get; set; }
 
         private ObservableObject _currentView;
+        private UserManager _userManager;
         
         public ObservableObject CurrentView
         {
@@ -32,6 +34,7 @@ namespace PetGallery.MVVM.ViewModels
         public MainViewModel()
         {
             PrepareCommands();
+            _userManager = new UserManager(new SqliteDataAccess());
             CurrentView = new LoginViewModel(LoginCommand, RegisterCommand);
         }
 
@@ -56,10 +59,8 @@ namespace PetGallery.MVVM.ViewModels
                     {
                         return;
                     }
-                    
-                    Console.WriteLine(userData.Login);
-                    Console.WriteLine(userData.Password);
-                    Console.WriteLine(userData.Email);
+
+                    TryLogin(userData);
                     return;
                 }
 
@@ -70,12 +71,39 @@ namespace PetGallery.MVVM.ViewModels
             {
                 if (CurrentView is RegisterViewModel)
                 {
-                    Console.WriteLine("Register");
+                    if (!(o is UserModel userData))
+                    {
+                        return;
+                    }
+
+                    TryRegister(userData);
                     return;
                 }
 
                 CurrentView = new RegisterViewModel(LoginCommand, RegisterCommand);
             });
+        }
+
+        private void TryRegister(UserModel userData)
+        {
+            if (_userManager.RegisterUserIfNotExist(userData))
+            {
+                CurrentView = new HomeViewModel(ExploreViewCommand);
+                return;
+            }
+
+            MessageBox.Show("Account already exists for this email", "Pet Gallery");
+        }
+
+        private void TryLogin(UserModel userData)
+        {
+            if (_userManager.LoginUser(userData))
+            {
+                CurrentView = new HomeViewModel(ExploreViewCommand);
+                return;
+            }
+            MessageBox.Show("Email or password incorrect", "Pet Gallery");
+            (CurrentView as LoginViewModel)?.Reset();
         }
     }
 }

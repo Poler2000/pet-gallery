@@ -75,5 +75,10 @@ namespace PetGallery.MVVM.ViewModels
             SecurePassword = pwd.Copy();
             SecurePassword.MakeReadOnly();
         }
+
+        public void Reset()
+        {
+            Email = "";
+        }
     }
 }

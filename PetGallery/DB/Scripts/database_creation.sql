@@ -6,7 +6,7 @@ CREATE TABLE Users(
     
     Id INTEGER PRIMARY KEY AUTOINCREMENT,
     Login TEXT NOT NULL,
-    Email TEXT NOT NULL,
+    Email TEXT UNIQUE NOT NULL,
     Password TEXT NOT NULL
 );
 INSERT INTO Users (Login, Email, Password) VALUES ('MyLogin', 'test@test.com', '12345678');
@@ -33,3 +33,5 @@ CREATE TABLE CollectionItems(
     FOREIGN KEY(Collection) REFERENCES Collections(Id),
     FOREIGN KEY(Item) REFERENCES Images(Id)
 );
+
+SELECT * FROM Users;
