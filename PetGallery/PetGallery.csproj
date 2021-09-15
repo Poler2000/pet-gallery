@@ -158,6 +158,7 @@
         <Page Include="MVVM\Views\FilterMenuView.xaml" />
         <Page Include="MVVM\Views\HomeView.xaml" />
         <Page Include="MVVM\Views\ImageDetailsView.xaml" />
+        <Page Include="MVVM\Views\InputDialog.xaml" />
         <Page Include="MVVM\Views\LoginView.xaml" />
         <Page Include="MVVM\Views\MyCollectionsView.xaml" />
         <Page Include="MVVM\Views\RegisterView.xaml" />
@@ -181,6 +182,7 @@
         <Compile Include="MVVM\ViewModels\FilterMenuViewModel.cs" />
         <Compile Include="MVVM\ViewModels\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModels\ImageDetailsViewModel.cs" />
+        <Compile Include="MVVM\ViewModels\InputDialogViewModel.cs" />
         <Compile Include="MVVM\ViewModels\LoginViewModel.cs" />
         <Compile Include="MVVM\ViewModels\MainViewModel.cs" />
         <Compile Include="MVVM\ViewModels\MyCollectionsViewModel.cs" />
@@ -200,6 +202,9 @@
         </Compile>
         <Compile Include="MVVM\Views\ImageDetailsView.xaml.cs">
           <DependentUpon>ImageDetailsView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\Views\InputDialog.xaml.cs">
+          <DependentUpon>InputDialog.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\Views\LoginView.xaml.cs">
           <DependentUpon>LoginView.xaml</DependentUpon>

@@ -17,7 +17,10 @@ namespace PetGallery.Core
         
         public bool CreateCollection(CollectionModel collection)
         {
-            throw new System.NotImplementedException();
+            string sql = $"INSERT INTO Collections (Title, User) VALUES ('{collection.Title}', '{collection.User}')";
+            
+            _database.SaveData(collection, sql);
+            return true;
         }
 
         public void RemoveCollection(CollectionModel collection)

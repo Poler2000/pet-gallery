@@ -6,6 +6,7 @@ using System.Windows;
 using PetGallery.Core;
 using PetGallery.DB;
 using PetGallery.MVVM.Models;
+using PetGallery.MVVM.Views;
 
 namespace PetGallery.MVVM.ViewModels
 {
@@ -35,10 +36,27 @@ namespace PetGallery.MVVM.ViewModels
             }
         }
         
+        public RelayCommand AddCollectionCommand { get; set; }
+        
         public MyCollectionsViewModel()
         {
             _collectionManager = new CollectionManager(SqliteDataAccess.Instance);
             MyCollections = _collectionManager.GetCollectionsForUser(UserInfo.CurrentUser);
+
+            AddCollectionCommand = new RelayCommand(o =>
+            {
+                var dialog = new InputDialog();
+                if (dialog.ShowDialog() == true)
+                {
+                    var collection = new CollectionModel
+                    {
+                        Title = dialog.Response,
+                        User = UserInfo.CurrentUser.Id
+                    };
+                    _collectionManager.CreateCollection(collection);
+                    MyCollections = _collectionManager.GetCollectionsForUser(UserInfo.CurrentUser);
+                }
+            });
         }
     }
 }
