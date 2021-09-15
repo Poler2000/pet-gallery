@@ -8,7 +8,12 @@ namespace PetGallery.Core
     {
         public static HttpClient Client { get; set; }
 
-        public static void InitApi()
+        static ApiHelper()
+        {
+            InitApi();    
+        }
+
+        private static void InitApi()
         {
             Client = new HttpClient();
             Client.BaseAddress = new Uri("https://api.thecatapi.com/v1/");

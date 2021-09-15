@@ -33,5 +33,18 @@ namespace PetGallery.DB
             using IDbConnection cnn = new SQLiteConnection(GetConnectionString());
             cnn.Execute(sql, model);
         }
+
+        public static SqliteDataAccess Instance => Nested.instance;
+
+        private class Nested
+        {
+            static Nested()
+            {
+            }
+
+            internal static readonly SqliteDataAccess instance = new SqliteDataAccess();
+        }
+
+        private SqliteDataAccess() {}
     }
 }

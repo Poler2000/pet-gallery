@@ -7,5 +7,58 @@
              xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    
+    <UserControl.Resources>
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Grid.ColumnSpan="5"
+                           Text="{Binding Title}"
+                           FontSize="24"/>
+                <TextBlock Grid.Row="1" Grid.Column="3"
+                           Text="Items: "
+                           FontSize="20"/>
+                <TextBlock Grid.Row="1" Grid.Column="4"
+                           Text="{Binding ItemCount}"
+                           FontSize="20"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource SecondaryBackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Grid.Column="1" Grid.ColumnSpan="3" 
+                  Foreground="{StaticResource PrimaryTextColor}"
+                  ItemTemplate="{StaticResource ItemTemplate}"
+                  ItemsSource="{Binding MyCollections}"
+                  SelectedItem="{Binding SelectedCollection}"
+                  Background="{StaticResource PrimaryBackgroundColor}"
+                  BorderThickness="0"
+                  HorizontalContentAlignment="Stretch">
+        </ListView>
+        
+        <Button Grid.Column="2" Height="60"
+                Content="Add new Collection"
+                Style="{StaticResource InterfaceButtonTheme}"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,20"
+                FontSize="24"/>
+    </Grid>
 </UserControl>

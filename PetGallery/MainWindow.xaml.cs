@@ -11,7 +11,6 @@ namespace PetGallery
     {
         public MainWindow()
         {
-            ApiHelper.InitApi();
             InitializeComponent();
         }
 

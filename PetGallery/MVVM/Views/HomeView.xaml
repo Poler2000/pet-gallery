@@ -32,9 +32,14 @@
                
                <TextBlock Grid.Row="0" Grid.Column="0" 
                           Grid.ColumnSpan="7"
-                          Text="Hello, Nabuchonodozor!"
                           FontSize="56"
-                          Margin="50, 20, 0, 20"/>
+                          Margin="50, 20, 0, 20">
+                   <TextBlock.Text>
+                       <MultiBinding StringFormat="Hello, {0} !">
+                           <Binding Path="Username"/>
+                       </MultiBinding>
+                   </TextBlock.Text>
+               </TextBlock>
                <TextBlock Grid.Row="1" Grid.Column="0"
                           Grid.ColumnSpan="5"
                           Margin="50,0,0,0"

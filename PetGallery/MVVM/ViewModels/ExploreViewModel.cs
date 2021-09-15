@@ -51,12 +51,6 @@ namespace PetGallery.MVVM.ViewModels
         public ExploreViewModel()
         {
             SideMenu = new FilterMenuViewModel(this);
-
-        }
-
-        public ExploreViewModel(string animal)
-        {
-            SideMenu = new FilterMenuViewModel(this);
         }
 
         private ObservableObject _sideMenu;

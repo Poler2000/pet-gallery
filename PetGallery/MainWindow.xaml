@@ -103,6 +103,18 @@
                 </RadioButton>
             </StackPanel>
             
+            <Button Grid.Row="1" Grid.Column="0" 
+                         Content="Sign out"
+                         Height="50"
+                         FontSize="20"
+                         Style="{StaticResource MenuSimpleButtonTheme}"
+                         Command="{Binding SignOutCommand}"
+                         Visibility="{Binding MenuVisibility}"
+                         VerticalAlignment="Bottom">
+                <Button.Tag>
+                    <BitmapImage UriSource="Images/outline_logout_white_36dp.png"/>
+                </Button.Tag>
+            </Button>
             
             <!-- Current View -->
             <ContentControl Grid.Row="1" Grid.Column="1"

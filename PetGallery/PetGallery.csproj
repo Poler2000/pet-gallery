@@ -138,10 +138,13 @@
         </Compile>
         <Compile Include="Controls\ImageButton.cs" />
         <Compile Include="Core\ApiHelper.cs" />
+        <Compile Include="Core\CollectionManager.cs" />
+        <Compile Include="Core\ICollectionManager.cs" />
         <Compile Include="Core\ImageProcessor.cs" />
         <Compile Include="Core\ObservableObject.cs" />
         <Compile Include="Core\PasswordHasher.cs" />
         <Compile Include="Core\RelayCommand.cs" />
+        <Compile Include="Core\UserInfo.cs" />
         <Compile Include="Core\UserManager.cs" />
         <Compile Include="Core\ViewConverter.cs" />
         <Compile Include="DB\ISqliteDataAccess.cs" />
@@ -170,6 +173,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\Models\BreedModel.cs" />
+        <Compile Include="MVVM\Models\CollectionModel.cs" />
         <Compile Include="MVVM\Models\ImageModel.cs" />
         <Compile Include="MVVM\Models\UserModel.cs" />
         <Compile Include="MVVM\ViewModels\CollectionViewModel.cs" />

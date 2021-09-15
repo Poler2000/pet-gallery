@@ -13,26 +13,39 @@ namespace PetGallery.Core
             _database = database;
         }
 
-        public bool RegisterUserIfNotExist(UserModel userdata)
+        public bool RegisterUserIfNotExist(UserModel userData)
         {
-            string sql = $"SELECT * FROM Users WHERE Email = '{userdata.Email}'";
+            string sql = $"SELECT * FROM Users WHERE Email = '{userData.Email}'";
 
             if (_database.LoadData<UserModel>(sql).Count > 0)
             {
                 return false;
             }
             
-            sql = $"INSERT INTO Users (Login, Email, Password) VALUES ('{userdata.Login}', '{userdata.Email}', '{userdata.Password}')";
+            sql = $"INSERT INTO Users (Login, Email, Password) VALUES ('{userData.Login}', '{userData.Email}', '{userData.Password}')";
             
-            _database.SaveData(userdata, sql);
+            _database.SaveData(userData, sql);
+            return LoginUser(userData);
+        }
+
+        public bool LoginUser(UserModel userData)
+        {
+            string sql = $"SELECT * FROM Users WHERE Email = '{userData.Email}' AND Password = '{userData.Password}'";
+
+            var result = _database.LoadData<UserModel>(sql);
+            
+            if (result.Count != 1)
+            {
+                return false;
+            }
+            
+            SetUserInfo(result[0]);
             return true;
         }
 
-        public bool LoginUser(UserModel userdata)
+        private void SetUserInfo(UserModel userData)
         {
-            string sql = $"SELECT * FROM Users WHERE Email = '{userdata.Email}' AND Password = '{userdata.Password}'";
-
-            return _database.LoadData<UserModel>(sql).Count == 1;
+            UserInfo.CurrentUser = userData;
         }
     }
 }

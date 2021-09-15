@@ -12,14 +12,13 @@ namespace PetGallery.MVVM.ViewModels
 {
     public class RegisterViewModel : ObservableObject, IDataErrorInfo
     {
-        public RelayCommand InfoCommand { get; set; }
-        public RelayCommand RegisterCommand { get; set; }
-        public RelayCommand LoginCommand { get; set; }
-        
         private static readonly Regex EmailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         private string _email = "Enter@email.com";
         private SecureString _password;
         private string _username = "Enter_username";
+        public RelayCommand InfoCommand { get; }
+        public RelayCommand RegisterCommand { get; }
+        public RelayCommand LoginCommand { get; }
         public string Email
         {
             get => _email;

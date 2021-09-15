@@ -15,8 +15,8 @@ namespace PetGallery.Core
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    List<ImageModel> images =JsonConvert.DeserializeObject<List<ImageModel>>(await response.Content.ReadAsStringAsync());
-                    if (images != null)
+                    List<ImageModel> images = JsonConvert.DeserializeObject<List<ImageModel>>(await response.Content.ReadAsStringAsync());
+                    if (images is {Count: > 0})
                     {
                         return images[0];
                     }

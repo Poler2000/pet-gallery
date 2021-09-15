@@ -47,8 +47,21 @@ namespace PetGallery.MVVM.ViewModels
             }
         }
 
+        private string _username;
+
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged();
+            }
+        }
+
         public HomeViewModel(RelayCommand myCollectionsViewCommand)
         {
+            Username = UserInfo.CurrentUser.Login;
             Task.Run((LoadRandomImage));
             ChangeViewWithCatCommand = new RelayCommand(
                 o => myCollectionsViewCommand.Execute("Cat"));

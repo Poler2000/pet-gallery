@@ -14,6 +14,8 @@ namespace PetGallery.MVVM.ViewModels
         public RelayCommand ExploreViewCommand { get; set; }
         public RelayCommand MyCollectionsViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
+        
+        public RelayCommand SignOutCommand { get; set; }
 
         private RelayCommand LoginCommand { get; set; }
         private RelayCommand RegisterCommand { get; set; }
@@ -46,7 +48,7 @@ namespace PetGallery.MVVM.ViewModels
         public MainViewModel()
         {
             PrepareCommands();
-            _userManager = new UserManager(new SqliteDataAccess());
+            _userManager = new UserManager(SqliteDataAccess.Instance);
             CurrentView = new LoginViewModel(LoginCommand, RegisterCommand);
         }
 
@@ -101,6 +103,13 @@ namespace PetGallery.MVVM.ViewModels
                 }
 
                 CurrentView = new RegisterViewModel(LoginCommand, RegisterCommand);
+            });
+
+            SignOutCommand = new RelayCommand(o =>
+            {
+                UserInfo.CurrentUser = null;
+                MenuVisibility = Visibility.Hidden;
+                CurrentView = new LoginViewModel(LoginCommand, RegisterCommand);
             });
         }
 
