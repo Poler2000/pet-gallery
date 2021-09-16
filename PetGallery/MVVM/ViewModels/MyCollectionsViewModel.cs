@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using PetGallery.Core;
@@ -12,11 +13,11 @@ namespace PetGallery.MVVM.ViewModels
 {
     public class MyCollectionsViewModel : ObservableObject
     {
-        private List<CollectionModel> _myCollections;
+        private ObservableCollection<CollectionModel> _myCollections;
         private CollectionModel _selectedCollection;
         private CollectionManager _collectionManager;
 
-        public List<CollectionModel> MyCollections
+        public ObservableCollection<CollectionModel> MyCollections
         {
             get => _myCollections;
             set
@@ -37,11 +38,12 @@ namespace PetGallery.MVVM.ViewModels
         }
         
         public RelayCommand AddCollectionCommand { get; set; }
+        public RelayCommand DeleteCollectionCommand { get; set; }
         
         public MyCollectionsViewModel()
         {
             _collectionManager = new CollectionManager(SqliteDataAccess.Instance);
-            MyCollections = _collectionManager.GetCollectionsForUser(UserInfo.CurrentUser);
+            MyCollections = new ObservableCollection<CollectionModel>(_collectionManager.GetCollectionsForUser(UserInfo.CurrentUser));
 
             AddCollectionCommand = new RelayCommand(o =>
             {
@@ -54,8 +56,16 @@ namespace PetGallery.MVVM.ViewModels
                         User = UserInfo.CurrentUser.Id
                     };
                     _collectionManager.CreateCollection(collection);
-                    MyCollections = _collectionManager.GetCollectionsForUser(UserInfo.CurrentUser);
+                    MyCollections = new ObservableCollection<CollectionModel>(_collectionManager.GetCollectionsForUser(UserInfo.CurrentUser));
                 }
+            });
+
+            DeleteCollectionCommand = new RelayCommand(o =>
+            {
+                var index = o is int ? (int) o : 0;
+                var collectionToRemove = MyCollections.ToList().Find(x => x.Id == index);
+                MyCollections.Remove(collectionToRemove);
+                _collectionManager.RemoveCollection(collectionToRemove);
             });
         }
     }

@@ -3,4 +3,7 @@
     <SolidColorBrush x:Key="PrimaryBackgroundColor">#222222</SolidColorBrush>
     <SolidColorBrush x:Key="SecondaryBackgroundColor">#333333</SolidColorBrush>
     <SolidColorBrush x:Key="PrimaryTextColor">White</SolidColorBrush>
+    <SolidColorBrush x:Key="RedAccent">#CC2F12</SolidColorBrush>
+    <SolidColorBrush x:Key="GreenAccent">#98CD26</SolidColorBrush>
+    <SolidColorBrush x:Key="BlueAccent">#3B6CCC</SolidColorBrush>
 </ResourceDictionary>

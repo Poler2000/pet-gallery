@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:PetGallery.MVVM.Views"
+             xmlns:controls="clr-namespace:PetGallery.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Visibility="{Binding ViewVisibility}">
@@ -45,15 +45,27 @@
                             </Image.ToolTip>
                         </Image>
                     </Border>
+                    <TextBlock Text="Title"
+                               FontSize="18"
+                               Margin="20,0,0,0"/>
                     <TextBox Text="{Binding Title}"
                              Margin="20"
                              FontSize="24"
                              Style="{StaticResource TextBoxTheme}"
                              MaxLength="30"/>
                     <Button Content="Add to collection"
-                            Margin="20"/>
+                            Margin="20"
+                            Height="36"
+                            Style="{StaticResource InterfaceButtonTheme}"
+                            MaxWidth="200"/>
                     <Button Content="Remove"
-                            Margin="20"/>
+                            Margin="20"
+                            Height="36"
+                            Style="{StaticResource InterfaceButtonTheme}"
+                            MaxWidth="200"/>
+                    <TextBlock Text="Description"
+                               FontSize="18"
+                               Margin="20,0,0,0"/>
                     <TextBox Margin="20"
                              FontSize="24"
                              MaxLines="5"
@@ -62,6 +74,16 @@
                              Style="{StaticResource TextBoxTheme}"
                              Text = "{Binding Description}"/>
                 </StackPanel>
+                
+                <controls:ImageButton Grid.Column="0" Image="../../Images/outline_arrow_back_white_36dp.png"
+                                      Width="56" Height="56"
+                                      VerticalAlignment="Center"
+                                      Command="{Binding PrevCommand}"/>
+         
+                <controls:ImageButton Grid.Column="2" Image="../../Images/outline_arrow_forward_white_36dp.png"
+                                      Width="56" Height="56"
+                                      VerticalAlignment="Center"
+                                      Command="{Binding NextCommand}"/>
             </Grid>
         </ScrollViewer>
     </Grid>

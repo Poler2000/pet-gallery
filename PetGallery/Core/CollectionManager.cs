@@ -25,7 +25,13 @@ namespace PetGallery.Core
 
         public void RemoveCollection(CollectionModel collection)
         {
-            throw new System.NotImplementedException();
+            string sql = $"DELETE FROM CollectionItems WHERE Collection = '{collection.Id}'";
+            
+            _database.UpdateData(collection, sql);
+
+            sql = $"DELETE FROM Collections WHERE Id = '{collection.Id}'";
+            
+            _database.UpdateData(collection, sql);
         }
 
         public List<CollectionModel> GetCollectionsForUser(UserModel user)

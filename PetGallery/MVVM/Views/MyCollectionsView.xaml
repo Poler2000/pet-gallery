@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PetGallery.MVVM.Views"
              xmlns:viewModels="clr-namespace:PetGallery.MVVM.ViewModels"
+             xmlns:controls="clr-namespace:PetGallery.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -27,11 +28,19 @@
                            Text="{Binding Title}"
                            FontSize="24"/>
                 <TextBlock Grid.Row="1" Grid.Column="3"
-                           Text="Items: "
-                           FontSize="20"/>
-                <TextBlock Grid.Row="1" Grid.Column="4"
-                           Text="{Binding ItemCount}"
-                           FontSize="20"/>
+                           FontSize="20">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Items: {0}!">
+                            <Binding Path="ItemCount"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <controls:ImageButton Grid.Row="0" Grid.Column="4" Image="../../Images/outline_delete_white_36dp.png"
+                                      Width="36"
+                                      Margin="0,5,0,0"
+                                      MouseOverColor="{StaticResource RedAccent}"
+                                      Command="{Binding DataContext.DeleteCollectionCommand, RelativeSource={RelativeSource AncestorType=local:MyCollectionsView}}"
+                                      CommandParameter="{Binding Id}"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>

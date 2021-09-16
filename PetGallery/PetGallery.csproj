@@ -139,6 +139,7 @@
         <Compile Include="Controls\ImageButton.cs" />
         <Compile Include="Core\ApiHelper.cs" />
         <Compile Include="Core\CollectionManager.cs" />
+        <Compile Include="Core\ICardCollection.cs" />
         <Compile Include="Core\ICollectionManager.cs" />
         <Compile Include="Core\ImageProcessor.cs" />
         <Compile Include="Core\ObservableObject.cs" />
@@ -245,6 +246,12 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Include="Images\outline_add_white_36dp.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Images\outline_arrow_back_white_36dp.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Images\outline_arrow_forward_white_36dp.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Include="Images\outline_close_white_36dp.png">

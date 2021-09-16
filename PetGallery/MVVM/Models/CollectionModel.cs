@@ -1,4 +1,6 @@
-﻿namespace PetGallery.MVVM.Models
+﻿using PetGallery.Core;
+
+namespace PetGallery.MVVM.Models
 {
     public class CollectionModel
     {

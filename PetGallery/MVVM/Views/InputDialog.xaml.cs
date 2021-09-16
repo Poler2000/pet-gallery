@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace PetGallery.MVVM.Views
 {
@@ -17,6 +19,14 @@ namespace PetGallery.MVVM.Views
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+        }
+
+        private void InputDialog_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

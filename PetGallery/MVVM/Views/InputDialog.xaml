@@ -5,13 +5,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:PetGallery.MVVM.Views"
         mc:Ignorable="d"
-        Title="InputDialog" Height="450" Width="800">
-    <StackPanel>
-        <!-- <TextBlock Text="Enter collection title" /> -->
-        <!-- <TextBox Text="{Binding CollectionTitle}"/> -->
-        <!-- <Button Content="Accept" Command="{Binding AcceptCommand}" /> -->
-        <TextBlock Text="Enter collection title" />
-        <TextBox Name="ResponseBox"/>
-        <Button Content="Accept" Click="ButtonBase_OnClick" />
-    </StackPanel>
+        Title="InputDialog" Height="150" Width="400"
+        WindowStyle="None"
+        MouseDown="InputDialog_OnMouseDown"
+        ResizeMode="NoResize"
+        FontSize="24"
+        FontFamily="Fonts/Molengo/#Molengo"
+        Foreground="{StaticResource PrimaryTextColor}">
+    <Grid Background="{StaticResource SecondaryBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Enter collection title" 
+                   Margin="15,0,0,0"/>
+        <TextBox Grid.Row="1" Name="ResponseBox" Margin="15,0,15,0"
+                 Style="{StaticResource TextBoxTheme}"/>
+        <Button Grid.Row="2" Content="Accept" Click="ButtonBase_OnClick" 
+                Margin="40,5,40,5"
+                Style="{StaticResource InterfaceButtonTheme}"
+                />
+    </Grid>
 </Window>

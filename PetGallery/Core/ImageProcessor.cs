@@ -99,6 +99,8 @@ namespace PetGallery.Core
         {
             var url = breedId is null ? $"https://api.thedogapi.com/v1/images/search?limit={limit}" : 
                 $"https://api.thedogapi.com/v1/images/search?limit={limit}&breed_id={breedId}";
+            
+            Console.WriteLine(url);
             using (var response = await ApiHelper.Client.GetAsync(url))
             {
                 if (!response.IsSuccessStatusCode) throw new Exception(response.ReasonPhrase);

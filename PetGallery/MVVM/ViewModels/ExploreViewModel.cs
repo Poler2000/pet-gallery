@@ -9,7 +9,7 @@ using PetGallery.MVVM.Models;
 
 namespace PetGallery.MVVM.ViewModels
 {
-    public class ExploreViewModel : ObservableObject
+    public class ExploreViewModel : ObservableObject, ICardCollection
     {
         private List<ImageModel> _petImages;
 
@@ -31,7 +31,7 @@ namespace PetGallery.MVVM.ViewModels
             set
             {
                 _selectedImage = value;
-                DetailsView = new ImageDetailsViewModel(_selectedImage);
+                DetailsView = new ImageDetailsViewModel(this, _selectedImage);
                 OnPropertyChanged();
             }
         }
@@ -74,6 +74,25 @@ namespace PetGallery.MVVM.ViewModels
             {
                 PetImages = imageModels;
             });
+        }
+
+        public void  PreviousImage()
+        {
+            var index = PetImages.IndexOf(SelectedImage);
+            if (index > 0)
+            {
+                SelectedImage = PetImages[index - 1];
+            }
+        }
+
+        public void NextImage()
+        {
+            var index = PetImages.IndexOf(SelectedImage);
+            if (index < PetImages.Count - 1)
+            {
+                SelectedImage = PetImages[index + 1];
+            }
+            
         }
     }
 }
