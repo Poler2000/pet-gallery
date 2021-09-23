@@ -38,19 +38,18 @@
                 </ListView.ItemsPanel>
             </ListView>
         </Grid>
-        
-        <DockPanel LastChildFill="True" Grid.Column="3">
-            <Grid DockPanel.Dock="Right">
+        <Canvas Grid.Column="3" Name="InfoCanvas">
+            <Grid Width="{Binding ActualWidth, ElementName=InfoCanvas}">
                 <Expander Header="Filter"
                           FontSize="24"
                           Foreground="White"
-                          IsExpanded="{Binding IsMenuExpanded}">
+                          Background="Transparent">
                     <ContentControl Content="{Binding SideMenu}"/>
                 </Expander>
             </Grid>
-        </DockPanel>
+        </Canvas>
         
-         <ContentControl Grid.Column="0" Grid.ColumnSpan="4"
-                         Content="{Binding DetailsView}"/>
+        <ContentControl Grid.Column="0" Grid.ColumnSpan="4"
+                        Content="{Binding DetailsView}"/>
     </Grid>
 </UserControl>

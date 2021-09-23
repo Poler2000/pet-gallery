@@ -13,8 +13,6 @@ namespace PetGallery.MVVM.ViewModels
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand ExploreViewCommand { get; set; }
         public RelayCommand MyCollectionsViewCommand { get; set; }
-        public RelayCommand SettingsViewCommand { get; set; }
-        
         public RelayCommand SignOutCommand { get; set; }
 
         private RelayCommand LoginCommand { get; set; }
@@ -66,12 +64,10 @@ namespace PetGallery.MVVM.ViewModels
 
             MyCollectionsViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new MyCollectionsViewModel();
+                CurrentView = new MyCollectionsViewModel(x => { CurrentView = new CollectionViewModel(x); });
             });
             
             HomeViewCommand = new RelayCommand(o => { CurrentView = new HomeViewModel(ExploreViewCommand); });
-
-            SettingsViewCommand = new RelayCommand(o => { CurrentView = new SettingsViewModel(); });
 
             LoginCommand = new RelayCommand(o =>
             {

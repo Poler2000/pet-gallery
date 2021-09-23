@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -11,9 +12,9 @@ namespace PetGallery.MVVM.ViewModels
 {
     public class ExploreViewModel : ObservableObject, ICardCollection
     {
-        private List<ImageModel> _petImages;
+        private ObservableCollection<ImageModel> _petImages;
 
-        public List<ImageModel> PetImages
+        public ObservableCollection<ImageModel> PetImages
         {
             get => _petImages;
             set
@@ -47,7 +48,7 @@ namespace PetGallery.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public ExploreViewModel()
         {
             SideMenu = new FilterMenuViewModel(this);
@@ -72,7 +73,7 @@ namespace PetGallery.MVVM.ViewModels
                 : ImageProcessor.GetDogs(selectedLimit, selectedBreed?.Id));
             Application.Current.Dispatcher.Invoke(() =>
             {
-                PetImages = imageModels;
+                PetImages = new ObservableCollection<ImageModel>(imageModels);
             });
         }
 
@@ -93,6 +94,17 @@ namespace PetGallery.MVVM.ViewModels
                 SelectedImage = PetImages[index + 1];
             }
             
+        }
+
+        public void AddButtonAction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveButtonAction()
+        {
+            DetailsView = null;
+            PetImages.Remove(SelectedImage);
         }
     }
 }

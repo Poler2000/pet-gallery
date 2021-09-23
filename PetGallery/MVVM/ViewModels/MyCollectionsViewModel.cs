@@ -15,7 +15,8 @@ namespace PetGallery.MVVM.ViewModels
     {
         private ObservableCollection<CollectionModel> _myCollections;
         private CollectionModel _selectedCollection;
-        private CollectionManager _collectionManager;
+        public delegate void CollectionAction(int id);
+        private CollectionAction _collectionSelectedAction;
 
         public ObservableCollection<CollectionModel> MyCollections
         {
@@ -33,6 +34,7 @@ namespace PetGallery.MVVM.ViewModels
             set
             {
                 _selectedCollection = value;
+                _collectionSelectedAction(_selectedCollection.Id);
                 OnPropertyChanged();
             }
         }
@@ -40,10 +42,11 @@ namespace PetGallery.MVVM.ViewModels
         public RelayCommand AddCollectionCommand { get; set; }
         public RelayCommand DeleteCollectionCommand { get; set; }
         
-        public MyCollectionsViewModel()
+        public MyCollectionsViewModel(CollectionAction collectionAction)
         {
-            _collectionManager = new CollectionManager(SqliteDataAccess.Instance);
-            MyCollections = new ObservableCollection<CollectionModel>(_collectionManager.GetCollectionsForUser(UserInfo.CurrentUser));
+            _collectionSelectedAction = collectionAction;
+            var collectionManager = new CollectionManager(SqliteDataAccess.Instance);
+            MyCollections = new ObservableCollection<CollectionModel>(collectionManager.GetCollectionsForUser(UserInfo.CurrentUser));
 
             AddCollectionCommand = new RelayCommand(o =>
             {
@@ -55,8 +58,8 @@ namespace PetGallery.MVVM.ViewModels
                         Title = dialog.Response,
                         User = UserInfo.CurrentUser.Id
                     };
-                    _collectionManager.CreateCollection(collection);
-                    MyCollections = new ObservableCollection<CollectionModel>(_collectionManager.GetCollectionsForUser(UserInfo.CurrentUser));
+                    collectionManager.CreateCollection(collection);
+                    MyCollections = new ObservableCollection<CollectionModel>(collectionManager.GetCollectionsForUser(UserInfo.CurrentUser));
                 }
             });
 
@@ -65,7 +68,7 @@ namespace PetGallery.MVVM.ViewModels
                 var index = o is int ? (int) o : 0;
                 var collectionToRemove = MyCollections.ToList().Find(x => x.Id == index);
                 MyCollections.Remove(collectionToRemove);
-                _collectionManager.RemoveCollection(collectionToRemove);
+                collectionManager.RemoveCollection(collectionToRemove);
             });
         }
     }

@@ -44,7 +44,16 @@ namespace PetGallery.Core
 
         public bool AddImageToCollection(CollectionModel collection, ImageModel image)
         {
-            throw new System.NotImplementedException();
+            string sql = $"INSERT INTO Images (Title, Comment, Url, Path)" +
+                         $"SELECT '{image.Title}', '{image.Comment}', '{image.Url}', '{image.Path}'";
+            _database.SaveData(image, sql);
+            
+            sql = $"SELECT Id FROM Images WHERE Url = '{image.Url}'";
+            var result = _database.LoadData<int>(sql);
+
+            sql = $"INSERT INTO CollectionItems (Collection, Item) VALUES ('{collection.Id}', '{result[0]}')";
+            _database.SaveData(image, sql);
+            return true;
         }
 
         public void RemoveItemFromCollection(CollectionModel collection, ImageModel image)

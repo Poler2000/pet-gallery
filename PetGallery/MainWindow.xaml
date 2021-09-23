@@ -92,15 +92,6 @@
                         <BitmapImage UriSource="Images/outline_favorite_border_white_36dp.png"/>
                     </RadioButton.Tag>
                 </RadioButton>
-                <RadioButton Content="Settings"
-                             Height="50"
-                             FontSize="20"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding SettingsViewCommand}">
-                    <RadioButton.Tag>
-                        <BitmapImage UriSource="Images/outline_settings_white_36dp.png"/>
-                    </RadioButton.Tag>
-                </RadioButton>
             </StackPanel>
             
             <Button Grid.Row="1" Grid.Column="0" 

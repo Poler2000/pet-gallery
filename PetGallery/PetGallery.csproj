@@ -141,6 +141,7 @@
         <Compile Include="Core\CollectionManager.cs" />
         <Compile Include="Core\ICardCollection.cs" />
         <Compile Include="Core\ICollectionManager.cs" />
+        <Compile Include="Core\ImageFileManager.cs" />
         <Compile Include="Core\ImageProcessor.cs" />
         <Compile Include="Core\ObservableObject.cs" />
         <Compile Include="Core\PasswordHasher.cs" />
@@ -163,7 +164,6 @@
         <Page Include="MVVM\Views\LoginView.xaml" />
         <Page Include="MVVM\Views\MyCollectionsView.xaml" />
         <Page Include="MVVM\Views\RegisterView.xaml" />
-        <Page Include="MVVM\Views\SettingsView.xaml" />
         <Page Include="StringResources.xaml" />
         <Page Include="StyleVariables.xaml" />
         <Page Include="Themes\ImageButtonTheme.xaml" />
@@ -188,7 +188,6 @@
         <Compile Include="MVVM\ViewModels\MainViewModel.cs" />
         <Compile Include="MVVM\ViewModels\MyCollectionsViewModel.cs" />
         <Compile Include="MVVM\ViewModels\RegisterViewModel.cs" />
-        <Compile Include="MVVM\ViewModels\SettingsViewModel.cs" />
         <Compile Include="MVVM\Views\CollectionView.xaml.cs">
           <DependentUpon>CollectionView.xaml</DependentUpon>
         </Compile>
@@ -215,9 +214,6 @@
         </Compile>
         <Compile Include="MVVM\Views\RegisterView.xaml.cs">
           <DependentUpon>RegisterView.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="MVVM\Views\SettingsView.xaml.cs">
-          <DependentUpon>SettingsView.xaml</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>

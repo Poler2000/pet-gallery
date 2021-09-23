@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:PetGallery.Controls"
+             xmlns:views="clr-namespace:PetGallery.MVVM.Views"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Visibility="{Binding ViewVisibility}">
@@ -24,7 +25,7 @@
                     </Border.InputBindings>
                 </Border>
         
-                <StackPanel DataContext="{Binding CurrentImage}"
+                <StackPanel DataContext="{Binding CurrentImageData}"
                             Grid.Column="1"
                             Background="#333333">
                     <Border CornerRadius="10"
@@ -34,7 +35,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Stretch">
                         <Image HorizontalAlignment="Stretch"
-                               Source="{Binding Url}">
+                               Source="{Binding DataContext.CurrentImage, RelativeSource={RelativeSource AncestorType=views:ImageDetailsView}}">
                             <Image.ToolTip>
                                 <ToolTip DataContext="{Binding PlacementTarget, 
                             RelativeSource={RelativeSource Self}}">
@@ -52,16 +53,19 @@
                              Margin="20"
                              FontSize="24"
                              Style="{StaticResource TextBoxTheme}"
+                             
                              MaxLength="30"/>
                     <Button Content="Add to collection"
                             Margin="20"
                             Height="36"
+                            Command="{Binding DataContext.AddCommand, RelativeSource={RelativeSource AncestorType=views:ImageDetailsView}}"
                             Style="{StaticResource InterfaceButtonTheme}"
                             MaxWidth="200"/>
                     <Button Content="Remove"
                             Margin="20"
                             Height="36"
                             Style="{StaticResource InterfaceButtonTheme}"
+                            Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=views:ImageDetailsView}}"
                             MaxWidth="200"/>
                     <TextBlock Text="Description"
                                FontSize="18"
@@ -73,6 +77,12 @@
                              Height="160"
                              Style="{StaticResource TextBoxTheme}"
                              Text = "{Binding Description}"/>
+                    <Button Content="Save changes"
+                            Margin="20"
+                            Height="36"
+                            Style="{StaticResource InterfaceButtonTheme}"
+                            Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource AncestorType=views:ImageDetailsView}}"
+                            MaxWidth="200"/>
                 </StackPanel>
                 
                 <controls:ImageButton Grid.Column="0" Image="../../Images/outline_arrow_back_white_36dp.png"
