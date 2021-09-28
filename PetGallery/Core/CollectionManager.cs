@@ -61,8 +61,18 @@ namespace PetGallery.Core
         {
             string sql = $"DELETE FROM CollectionItems WHERE Collection = {collection.Id} AND Item = {image.Id}";
             _database.SaveData(sql);
-            // TODO Remove image if in no other collection
-            //sql = $"DELETE"
+
+            sql = $"SELECT COUNT(*) FROM CollectionItems WHERE Item = '{image.Id}'";
+            var count = _database.LoadData<int>(sql);
+            
+            if (count[0] == 0)
+            {
+                sql = $"DELETE FROM Images WHERE Id NOT IN" +
+                      "(SELECT Id FROM Images a JOIN CollectionItems b " +
+                      $"ON a.Id = b.Item WHERE b.Item = '{image.Id}') " +
+                      $"AND Id = '{image.Id}'";
+                _database.SaveData(sql);
+            }
         }
 
         public void UpdateImageData(ImageModel image)
