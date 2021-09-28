@@ -40,7 +40,7 @@ namespace PetGallery.MVVM.ViewModels
             }
             else
             {
-                CurrentImage = new BitmapImage(im.Url);
+                CurrentImage = new BitmapImage(new Uri(im.Url));
             }
 
             ReturnCommand = new RelayCommand(o =>

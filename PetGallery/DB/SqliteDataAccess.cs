@@ -22,16 +22,10 @@ namespace PetGallery.DB
             return output.ToList();
         }
 
-        public void SaveData<T>(T model, string sql)
+        public void SaveData(string sql)
         {
             using IDbConnection cnn = new SQLiteConnection(GetConnectionString());
-            cnn.Execute(sql, model);
-        }
-
-        public void UpdateData<T>(T model, string sql)
-        {
-            using IDbConnection cnn = new SQLiteConnection(GetConnectionString());
-            cnn.Execute(sql, model);
+            cnn.Execute(sql);
         }
 
         public static SqliteDataAccess Instance => Nested.instance;

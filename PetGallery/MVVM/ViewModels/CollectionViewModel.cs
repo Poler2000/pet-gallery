@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using PetGallery.Core;
+using PetGallery.DB;
 using PetGallery.MVVM.Models;
 
 namespace PetGallery.MVVM.ViewModels
@@ -31,6 +33,8 @@ namespace PetGallery.MVVM.ViewModels
             }
         }
 
+        private CollectionManager _collectionManager;
+
         private ImageDetailsViewModel _detailsView;
 
         public ImageDetailsViewModel DetailsView
@@ -55,9 +59,17 @@ namespace PetGallery.MVVM.ViewModels
             }
         }
         
-        public CollectionViewModel(int id)
+        public CollectionModel CurrentCollection { get; set; }
+        
+        public CollectionViewModel(CollectionModel collection)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("I'm here!");
+            CurrentCollection = collection;
+            _collectionManager = new CollectionManager(SqliteDataAccess.Instance); 
+            Console.WriteLine("I'm there!");
+            PetImages = new ObservableCollection<ImageModel>(_collectionManager.GetImages(CurrentCollection));
+            Console.WriteLine("I'm after!");
+
         }
 
         public void  PreviousImage()
@@ -81,16 +93,19 @@ namespace PetGallery.MVVM.ViewModels
 
         public void AddButtonAction()
         {
-            ChooseCollectionMenu = new MyCollectionsViewModel(x =>
+            ChooseCollectionMenu = new MyCollectionsViewModel(collection =>
             {
+                DetailsView = null;
+                _collectionManager.AddImageToCollection(collection, SelectedImage);
                 ChooseCollectionMenu = null;
-                throw new System.NotImplementedException();
             });
         }
 
         public void RemoveButtonAction()
         {
-            throw new System.NotImplementedException();
+            DetailsView = null;
+            _collectionManager.RemoveItemFromCollection(CurrentCollection, SelectedImage);
+            PetImages.Remove(SelectedImage);
         }
     }
 }

@@ -23,8 +23,7 @@ namespace PetGallery.Core
             }
             
             sql = $"INSERT INTO Users (Login, Email, Password) VALUES ('{userData.Login}', '{userData.Email}', '{userData.Password}')";
-            
-            _database.SaveData(userData, sql);
+            _database.SaveData(sql);
             return LoginUser(userData);
         }
 

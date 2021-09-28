@@ -76,7 +76,7 @@
                              TextWrapping="Wrap"
                              Height="160"
                              Style="{StaticResource TextBoxTheme}"
-                             Text = "{Binding Description}"/>
+                             Text = "{Binding Comment}"/>
                     <Button Content="Save changes"
                             Margin="20"
                             Height="36"

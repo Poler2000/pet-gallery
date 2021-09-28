@@ -15,7 +15,7 @@ namespace PetGallery.MVVM.ViewModels
     {
         private ObservableCollection<CollectionModel> _myCollections;
         private CollectionModel _selectedCollection;
-        public delegate void CollectionAction(int id);
+        public delegate void CollectionAction(CollectionModel id);
         private CollectionAction _collectionSelectedAction;
 
         public ObservableCollection<CollectionModel> MyCollections
@@ -34,7 +34,7 @@ namespace PetGallery.MVVM.ViewModels
             set
             {
                 _selectedCollection = value;
-                _collectionSelectedAction(_selectedCollection.Id);
+                _collectionSelectedAction(_selectedCollection);
                 OnPropertyChanged();
             }
         }
@@ -65,7 +65,7 @@ namespace PetGallery.MVVM.ViewModels
 
             DeleteCollectionCommand = new RelayCommand(o =>
             {
-                var index = o is int ? (int) o : 0;
+                var index = o is int i ? i : 0;
                 var collectionToRemove = MyCollections.ToList().Find(x => x.Id == index);
                 MyCollections.Remove(collectionToRemove);
                 collectionManager.RemoveCollection(collectionToRemove);

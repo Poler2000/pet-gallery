@@ -51,5 +51,8 @@
         
         <ContentControl Grid.Column="0" Grid.ColumnSpan="4"
                         Content="{Binding DetailsView}"/>
+        
+        <ContentControl Grid.Column="0" Grid.ColumnSpan="4"
+                        Content="{Binding ChooseCollectionView}"/>
     </Grid>
 </UserControl>

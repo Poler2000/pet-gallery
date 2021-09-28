@@ -37,6 +37,10 @@
                  <views:MyCollectionsView/>
              </DataTemplate>
              
+             <DataTemplate DataType="{x:Type viewModel:CollectionViewModel}">
+                 <views:CollectionView/>
+             </DataTemplate>
+             
              <DataTemplate DataType="{x:Type viewModel:ImageDetailsViewModel}">
                  <views:ImageDetailsView/>
              </DataTemplate>

@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PetGallery.Core;
+using PetGallery.DB;
 using PetGallery.MVVM.Models;
 
 namespace PetGallery.MVVM.ViewModels
@@ -45,6 +46,18 @@ namespace PetGallery.MVVM.ViewModels
             set
             {
                 _detailsView = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private MyCollectionsViewModel _chooseCollectionView;
+
+        public MyCollectionsViewModel ChooseCollectionView
+        {
+            get => _chooseCollectionView;
+            set
+            {
+                _chooseCollectionView = value;
                 OnPropertyChanged();
             }
         }
@@ -98,7 +111,13 @@ namespace PetGallery.MVVM.ViewModels
 
         public void AddButtonAction()
         {
-            throw new NotImplementedException();
+            DetailsView = null;
+            ChooseCollectionView = new MyCollectionsViewModel(collection =>
+            {
+                ChooseCollectionView = null;
+                var collectionManager = new CollectionManager(SqliteDataAccess.Instance);
+                collectionManager.AddImageToCollection(collection, SelectedImage);
+            });
         }
 
         public void RemoveButtonAction()
