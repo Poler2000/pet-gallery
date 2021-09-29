@@ -11,8 +11,9 @@ namespace PetGallery.Core
     {
         private static async Task<ImageModel> LoadImage(string url)
         {
-            using (HttpResponseMessage response = await ApiHelper.Client.GetAsync(url))
+            try
             {
+                using HttpResponseMessage response = await ApiHelper.Client.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
                     List<ImageModel> images = JsonConvert.DeserializeObject<List<ImageModel>>(await response.Content.ReadAsStringAsync());
@@ -20,12 +21,14 @@ namespace PetGallery.Core
                     {
                         return images[0];
                     }
-                    throw new Exception();
-
                 }
-
-                throw new Exception(response.ReasonPhrase);
+                Console.WriteLine(response.ReasonPhrase);
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
         }
 
         public static async Task<ImageModel> GetCat(string id = "", string breedId = "")
@@ -44,17 +47,20 @@ namespace PetGallery.Core
         {
             var url = breedId is null ? $"https://api.thecatapi.com/v1/images/search?limit={limit}" : 
                                          $"https://api.thecatapi.com/v1/images/search?limit={limit}&breed_id={breedId}";
-            using (var response = await ApiHelper.Client.GetAsync(url))
+            List<ImageModel> images = new List<ImageModel>();
+            try
             {
+                using var response = await ApiHelper.Client.GetAsync(url);
                 if (!response.IsSuccessStatusCode) throw new Exception(response.ReasonPhrase);
                 
-                List<ImageModel> images =JsonConvert.DeserializeObject<List<ImageModel>>(await response.Content.ReadAsStringAsync());
-                if (images != null)
-                {
-                    return images;
-                }
-                throw new Exception();
+                images = JsonConvert.DeserializeObject<List<ImageModel>>(await response.Content.ReadAsStringAsync());
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return images;
         }
         
         public static async Task<ImageModel> GetDog(string id = "", string breedId = "")
@@ -71,8 +77,9 @@ namespace PetGallery.Core
 
         private static async Task<List<BreedModel>> GetBreeds(string url)
         {
-            using (HttpResponseMessage response = await ApiHelper.Client.GetAsync(url))
+            try
             {
+                using HttpResponseMessage response = await ApiHelper.Client.GetAsync(url);
                 if (!response.IsSuccessStatusCode) throw new Exception(response.ReasonPhrase);
                 
                 List<BreedModel> breeds = JsonConvert.DeserializeObject<List<BreedModel>>(await response.Content.ReadAsStringAsync());
@@ -80,38 +87,43 @@ namespace PetGallery.Core
                 {
                     return breeds;
                 }
-                throw new Exception();
-
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return null;
         }
 
         public static async Task<List<BreedModel>> GetCatBreeds()
         {
-            return await GetBreeds("https://api.thecatapi.com/v1/breeds");
+            return await GetBreeds("https://api.thecatapi.com/v1/breeds") ?? new List<BreedModel>();
         }
         
         public static async Task<List<BreedModel>> GetDogBreeds()
         {
-            return await GetBreeds("https://api.thedogapi.com/v1/breeds");
+            return await GetBreeds("https://api.thedogapi.com/v1/breeds") ?? new List<BreedModel>();
         }
 
         public static async Task<List<ImageModel>> GetDogs(int limit = 10, string breedId = "")
         {
             var url = breedId is null ? $"https://api.thedogapi.com/v1/images/search?limit={limit}" : 
                 $"https://api.thedogapi.com/v1/images/search?limit={limit}&breed_id={breedId}";
-            
-            Console.WriteLine(url);
-            using (var response = await ApiHelper.Client.GetAsync(url))
+            List<ImageModel> images = new List<ImageModel>();
+            try
             {
+                using var response = await ApiHelper.Client.GetAsync(url);
                 if (!response.IsSuccessStatusCode) throw new Exception(response.ReasonPhrase);
                 
-                List<ImageModel> images = JsonConvert.DeserializeObject<List<ImageModel>>(await response.Content.ReadAsStringAsync());
-                if (images != null)
-                {
-                    return images;
-                }
-                throw new Exception();
+                images = JsonConvert.DeserializeObject<List<ImageModel>>(await response.Content.ReadAsStringAsync());
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return images;
         }
     }
 }

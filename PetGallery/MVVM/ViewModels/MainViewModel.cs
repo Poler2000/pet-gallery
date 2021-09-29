@@ -66,7 +66,6 @@ namespace PetGallery.MVVM.ViewModels
             {
                 CurrentView = new MyCollectionsViewModel(collection =>
                 {
-                    Console.Write("HELP"); 
                     CurrentView = new CollectionViewModel(collection); 
                 });
             });

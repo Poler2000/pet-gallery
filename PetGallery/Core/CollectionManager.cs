@@ -44,16 +44,18 @@ namespace PetGallery.Core
 
         public bool AddImageToCollection(CollectionModel collection, ImageModel image)
         {
+            ImageFileManager.SaveImage(image);
             string sql = $"INSERT INTO Images (Title, Comment, Url, Path)" +
                          $"SELECT '{image.Title}', '{image.Comment}', '{image.Url}', '{image.Path}'" +
                          $"WHERE NOT EXISTS(SELECT * FROM Images WHERE Url = '{image.Url}')";
             _database.SaveData(sql);
-            
+
             sql = $"SELECT Id FROM Images WHERE Url = '{image.Url}'";
             var result = _database.LoadData<int>(sql);
 
             sql = $"INSERT INTO CollectionItems (Collection, Item) VALUES ('{collection.Id}', '{result[0]}')";
             _database.SaveData(sql);
+
             return true;
         }
 

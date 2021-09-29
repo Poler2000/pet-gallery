@@ -28,7 +28,7 @@
                           SelectedItem="{Binding SelectedLimit}"/>
             </StackPanel>
             
-            <Button Style="{StaticResource LoginFormButton}"
+            <Button Style="{StaticResource InterfaceButtonTheme}"
                     Content="Filter"
                     MaxWidth="150"
                     Height="40"

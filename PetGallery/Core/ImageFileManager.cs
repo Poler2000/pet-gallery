@@ -14,12 +14,10 @@ namespace PetGallery.Core
         {
             if (model.Path != null && File.Exists(model.Path))
             {
-                Console.WriteLine("Not gonna do it!");
                 return;
             }
             
             var path = $"{Environment.CurrentDirectory}/PetImages/{model.Id}.jpg";
-            Console.WriteLine(path);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             model.Path = path;
             using (WebClient client = new WebClient()) 

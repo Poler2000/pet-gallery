@@ -63,12 +63,9 @@ namespace PetGallery.MVVM.ViewModels
         
         public CollectionViewModel(CollectionModel collection)
         {
-            Console.WriteLine("I'm here!");
             CurrentCollection = collection;
             _collectionManager = new CollectionManager(SqliteDataAccess.Instance); 
-            Console.WriteLine("I'm there!");
             PetImages = new ObservableCollection<ImageModel>(_collectionManager.GetImages(CurrentCollection));
-            Console.WriteLine("I'm after!");
 
         }
 
