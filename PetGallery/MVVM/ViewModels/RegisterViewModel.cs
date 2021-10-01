@@ -98,13 +98,13 @@ namespace PetGallery.MVVM.ViewModels
 
         private bool IsValidPassword()
         {
+            if (SecurePassword is null) return false;
             return SecurePassword.Length is (> 7 and < 25);
         }
 
         private bool IsValidUsername()
         {
             return !(string.IsNullOrEmpty(Username) || Username.Contains(" "));
-           
         }
 
         private bool IsValidEmail()

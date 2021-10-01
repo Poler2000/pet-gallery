@@ -237,6 +237,7 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="Fonts\Molengo\OFL.txt" />
+      <Content Include="Images\Google_icons_license.txt" />
       <Content Include="Images\outline_account_circle_white_36dp.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
@@ -294,6 +295,7 @@
       <Content Include="Images\outline_vpn_key_white_36dp.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <Content Include="Images\PetGalleryDemo.png" />
       <Content Include="Images\PetLogo.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
